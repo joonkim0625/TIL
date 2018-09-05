@@ -87,4 +87,4 @@
   - fork 한 후에 나의 페이지에 와서 클론을 하고 싶은 파일을 클론 주소 복사하여 내 로컬에 저장한다.
   - 그 후에 해당 폴더에 가서 git remote add upstream <클론 주소>를 저장해준다.
   - git pull --rebase upstream master를 하면 최신 정보를 가져올 수 있다.
-  - 그 후에 git push -u origin master로 
+  
