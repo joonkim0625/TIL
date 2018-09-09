@@ -13,3 +13,189 @@
   margin: -1px;
   overflow: hidden;
 }
+
+/* 아이콘 폰트 */
+
+.icon::before{
+  font-family: "webcafeIcon";
+  position: relative;
+  top: 2px;
+}
+
+.icon-r::before{
+  content: "r";
+}
+
+.icon-c::before{
+    content: "c";
+}
+.icon-g::before{
+    content: "g";
+}
+.icon-z::before{
+    content: "z";
+}
+.icon-p::before{
+    content: "p";
+}
+
+/* 기본 스타일 */
+
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+
+html{
+  font-size: 10px;
+}
+
+/* 본문 스타일 */
+body{
+  color: #181818;
+  background-color: #fff;
+  font-size: 1.4rem;
+  font-family: 'Spoqa Han Sans', 'Sans-serif';
+}
+
+/* 하이퍼링크 스타일 */
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+/* float 이슈를 해결하기 위한 선언 */
+
+.clearfix::after{
+  content:"";
+  background-color: aqua;
+  clear: both;
+  display: block;
+}
+
+/* 레이아웃 */
+.container{
+  background: url("css/images/bg_flower.png") no-repeat 50% 15px, linear-gradient(to bottom, #aaa 0%, #ccc 50%, #fff 70%, #fff 100%);
+  background-color: #aaa;
+}
+
+.header, .visual, .main-content, .slogan, .footer{
+  width: 940px;
+  margin: 0 auto;
+}
+
+/* 헤더 */
+.header{
+  background-color: #fff;
+  position: relative;
+  padding: 5px 30px 30px;
+  border-radius: 0 0 15px 15px;
+}
+
+/* logo */
+.logo{
+  position: absolute;
+  top: 47px;
+  left: 60px;
+}
+
+/* member link */
+.member{
+  text-align: right;
+  font-size: 0;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.member li, .member a{
+  display: inline-block;
+  font-size: 1.4rem;
+}
+
+.member li:nth-child(n+2)::before{
+  content: ":";
+
+}
+
+.member a{
+  padding: 5px;
+}
+
+/* main menu */
+
+.main-menu{
+  border-top: 2px solid currentColor;
+  background: #d67028 linear-gradient(to bottom, #f4b030 0%, #d67028 35%, #d67028 70%, #f4b030 100%);
+  margin-top: .5em;
+  padding-left: 225px;
+  height: 47px;
+}
+
+.main-menu > li{
+  float:left;
+  position: relative;
+}
+.menu-item{
+  cursor: pointer;
+  display: block;
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: #fff;
+  line-height: 45px;
+  padding: 0 20px;
+  border-left: 2px solid rgba(255, 255, 255, .5);
+  text-shadow: 1px 0 0 #000,
+               0 1px 0 #000,
+               -1px 0 0 #000,
+               0 -1px 0 #000;
+
+}
+
+.sub-menu{
+  position: absolute;
+  top: 49px;
+  white-space: nowrap;
+  display: none;
+}
+.is-act .sub-menu{
+  display:block;
+}
+.is-act .menu-item{
+  color: #ff0;
+
+}
+.is-act .menu-item::after{
+  content: "";
+  display: block;
+  height: 2px;
+  background: #000;
+}
+
+.sub-menu1, .sub-menu2, .sub-menu3{
+  left: 0;
+}
+
+.sub-menu4, .sub-menu5, .sub-menu6{
+  right: 0;
+}
+
+.sub-menu li{
+  display: inline-block;
+  margin-right: .5em;
+}
+
+.sub-menu a{
+  display: inline-block;
+  padding: .3em 0;
+
+}
+
+.sub-menu a::before{
+  content: "r";
+  font-family: "webcafeIcon";
+  position: relative;
+  top: 2px;
+}
+
+.sub-menu a:hover::before, .sub-menu a:focus::before{
+  content: "c";
+}
