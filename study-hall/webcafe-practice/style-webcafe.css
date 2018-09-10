@@ -198,4 +198,5 @@ a{
 
 .sub-menu a:hover::before, .sub-menu a:focus::before{
   content: "c";
+  align-items: 
 }
