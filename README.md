@@ -4,8 +4,9 @@
 ## Index
 
 |  | DATE | CATEGORY | DESCRIPTION |
-| --- | --- | ------- | --- |
-| --- | --- | ------- | --- |
+| --- | ---- | ---- | --- |
+| 12 | [09-19-18](HTML_CSS/week03-09-19-18.md) | HTML/CSS | Web Cafe - 슬로건 및 푸터 |
+| 11 | [09-18-18](HTML_CSS/week03-09-18-18.md) | HTML/CSS | Web Cafe - 메인 영역 : 그룹3|
 | 10 | [09-17-18](HTML_CSS/week03-09-17-18.md) | HTML/CSS | Web Cafe 실습 - 메인 영역 |
 | 09 | [09-14-18](HTML_CSS/week02-09-14-18.md) | HTML/CSS | Web Cafe 만들기 실습 |
 | 08 | [09-13-18](HTML_CSS/week02-09-13-18.md) | HTML/CSS | Web Cafe 만들기 실습 - 애니메이션 |
