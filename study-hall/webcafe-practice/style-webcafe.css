@@ -181,52 +181,33 @@ a {
   margin: 0 auto;
 }
 
+
+
+
+
+/* 헤더 */
+
 .header {
-  position: relative;
+  background: yellow;
 }
 
-.main-logo  {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-}
+/* 메뉴 */
 
-.member-login {
-  text-align: right;
-  margin-top: 10px;
 
-}
-.member-login li, .member-login a {
+/* ------------------------------------------------ */
 
-  display: inline-block;
-  
-}
+/* 메인 섹션 */
 
-.member-login li:nth-child(n+2)::before {
-  content: "|"
-}
 
-.member-login li  {
-  font-size: 1.4rem;
-}
 
-.member-login a{
-  padding: 8px;
-  
-}
 
-.search-container {
-  
-  text-align: right;
-}
 
-.search-container input {
-  margin-top: 20px;
-  width: 400px;
-  height: 35px;
-}
 
-.btn-search {
-  width: 50px;
-  height: 35px;
-}
+
+
+
+/* ------------------------------------------------ */
+
+/* 슬로건 */
+
+/* 푸터 */
