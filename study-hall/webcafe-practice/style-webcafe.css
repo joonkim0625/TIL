@@ -173,7 +173,7 @@ a {
 }
 
 .header,
-.visual,
+.menu-container,
 .main,
 .slogan,
 .footer {
@@ -181,33 +181,471 @@ a {
   margin: 0 auto;
 }
 
-
-
-
+fieldset {
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
 
 /* 헤더 */
 
 .header {
-  background: yellow;
+  position: relative;
+  height: 100px;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 25px;
+}
+
+.member-login {
+  text-align: right;
+  padding: 5px 10px 0 0;
+}
+
+.member-login li:nth-child(n + 2)::before {
+  content: "|";
+}
+
+.member-login li {
+  font-size: 1.5rem;
+}
+
+.member-login li,
+.member-login a {
+  display: inline-block;
+}
+
+.member-login a {
+  padding: 10px;
+}
+
+.search {
+  display: inline-block;
+  float: right;
+  margin-top: 10px;
+}
+
+.search input {
+  font-size: 1.5rem;
+  width: 400px;
+  height: 35px;
+  margin-right: 10px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.btn-search {
+  font-size: 1.5rem;
+  width: 50px;
+  height: 35px;
+  border: 1px solid #888;
+  border-radius: 5px;
+  background: #aaa;
+  color: #fff;
 }
 
 /* 메뉴 */
 
+.menu {
+  background: #988574;
+  min-height: 200px;
+  border-top: 2px solid #181818;
+  border-bottom: 2px solid #181818;
+}
+
+.menu-list {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 30px;
+}
+
+.menu-list span {
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 0 1px 0 #000, 1px 0 0 #000, 0 -1px 0 #000, -1px 0 0 #000;
+  cursor: pointer;
+}
+
+.sub-menu-list li {
+  font-size: 1.6rem;
+  color: #fff;
+  padding: 20px 0 0 10px;
+  text-align: left;
+}
+
+.sub-menu-list a {
+  padding: 8px;
+}
 
 /* ------------------------------------------------ */
 
 /* 메인 섹션 */
 
+.main-section-heading {
+  background-image: url(/css/images/sprite_main.png);
+  background-repeat: no-repeat;
+}
 
+/* 추천 서적 */
+.book {
+  margin-top: 20px;
+  float: left;
 
+  width: 320px;
+  min-height: 600px;
+  position: relative;
+}
 
+.book-heading {
+  background-position: 0 0;
 
+  font-size: 1.8rem;
+  font-weight: 700;
 
+  height: 80px;
 
+  margin-left: 20px;
+  padding-top: 10px;
+  padding-left: 60px;
+}
+.book-heading span {
+  color: lightgreen;
+}
 
+.book-cover img {
+  margin-left: 30px;
+  width: 240px;
+  height: 290px;
+}
+.book-cover figcaption {
+  font-size: 1.3rem;
+  margin-left: 70px;
+  height: 20px;
+  padding: 5px;
+}
+
+.book-author {
+  font-size: 1.3rem;
+  margin-left: 110px;
+  height: 57px;
+  padding: 5px;
+}
+.book-author span {
+  font-size: 3rem;
+  margin-left: -30px;
+  color: lightgreen;
+  padding-top: 3px;
+}
+
+.book-preview {
+  font-size: 1.5rem;
+  padding-top: 10px;
+  padding-right: 20px;
+}
+
+/* 새소식 */
+
+.news {
+  margin-top: 20px;
+  position: relative;
+
+  width: 680px;
+  min-height: 600px;
+
+  float: left;
+}
+
+.news-heading {
+  background-position: 0 -230px;
+  position: absolute;
+
+  font-size: 1.8rem;
+  font-weight: 700;
+
+  height: 80px;
+
+  padding-top: 10px;
+  padding-left: 60px;
+}
+
+.news-heading span {
+  color: #e8ca58;
+}
+
+.news-vid-container {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 660px;
+  height: 370px;
+}
+.news-vid {
+  width: 100%;
+  height: auto;
+}
+.news-brief {
+  position: absolute;
+  top: 460px;
+  width: 660px;
+  left: 0;
+  font-size: 1.5rem;
+}
+
+.news-date {
+  position: absolute;
+  top: 570px;
+  right: 20px;
+
+  font-size: 1.5rem;
+}
+.news-date::before {
+}
+/* 게시판 */
+.board {
+  position: relative;
+  width: 320px;
+  height: 277px;
+  float: left;
+}
+.board-heading {
+  background-position: 0 -115px;
+
+  height: 60px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding-top: 10px;
+  padding-left: 60px;
+}
+.board-heading span {
+  color: #aaa;
+}
+
+.board-content {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  width: 320px;
+}
+
+.board-content li,
+.board-content a {
+  display: inline-block;
+}
+.board-content li {
+  width: 320px;
+  padding-right: 10px;
+}
+.board-content time {
+  float: right;
+  padding: 5px;
+}
+
+.board-content a {
+  padding: 5px;
+  width: 225px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.board-more::before {
+  content: "+ ";
+
+  position: relative;
+  font-size: 2rem;
+  font-weight: bold;
+  top: 2px;
+  color: #0f0;
+}
+.board-more {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  padding: 8px;
+  font-size: 1.4rem;
+}
+
+/* 트위터 */
+.twitter {
+  float: left;
+  width: 405px;
+  height: 277px;
+  position: relative;
+}
+
+.twitter-heading {
+  background-position: 0 -460px;
+  height: 60px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding-top: 10px;
+  padding-left: 60px;
+}
+.twitter-heading span {
+  color: skyblue;
+}
+.twitter-info {
+  width: 280px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 25px;
+  padding-left: 10px;
+}
+.twitter-author {
+  color: skyblue;
+  padding-right: 10px;
+}
+.twitter-brief {
+  margin-top: 15px;
+  font-size: 1.5rem;
+  width: 280px;
+  padding-left: 10px;
+  line-height: 1.5;
+}
+.twitter-thumbnail {
+  border: 1px solid #333;
+  border-radius: 50%;
+  padding: 0.5em;
+  position: absolute;
+  top: 90px;
+  right: 0;
+}
+.twitter time {
+  position: absolute;
+  top: 220px;
+  right: 15px;
+  font-size: 1.5rem;
+}
+/* 인기사이트 */
+.favorite {
+  float: left;
+  width: 235px;
+  height: 277px;
+}
+.favorite-heading {
+  background-position: 0 -345px;
+
+  height: 60px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding-top: 10px;
+  padding-left: 60px;
+}
+.favorite-heading span {
+  color: orange;
+}
+
+.favorite-list {
+  margin-top: 10px;
+  padding: 10px 0 0 40px;
+}
+.favorite-list li {
+  margin-top: 10px;
+  font-size: 1.5rem;
+}
+
+.favorite-list a {
+  padding: 15px 15px 15px 5px;
+}
+.favorite-list {
+  list-style-type: none;
+  overflow: hidden;
+}
+.favorite-list li {
+  counter-increment: number;
+  margin: 1em 0;
+}
+.favorite-list li::before {
+  content: counter(number, decimal);
+  background: #eea60a;
+  color: #fff;
+  border-radius: 50%;
+  padding: 0 0.5em;
+  margin-right: 0.5em;
+}
 
 /* ------------------------------------------------ */
 
 /* 슬로건 */
+.slogan {
+  padding: 10px 60px 10px 160px;
+  position: relative;
+}
+
+.slogan-heading {
+  position: absolute;
+  width: 110px;
+  height: 83px;
+  /* text-align 사용 */
+  text-align: center;
+  line-height: 83px;
+  /* flex를 사용한 정렬 */
+  /* display: flex;
+  justify-content: center;
+  align-content: center; */
+  left: 25px;
+  bottom: -25px;
+}
+/* after는 ir.html에서 확인 */
+/* before사용도 가능 하다 */
+/* .slogan-heading::before  {
+  content: "";
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+  background: pink;
+} */
+
+.slogan-heading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(css/images/coffee.png) no-repeat;
+}
+
+.slogan-content {
+  color: #181818;
+  font-size: 1.6rem;
+  width: 700px;
+}
+
+.slogan-content q::before {
+  font-size: 3rem;
+  position: relative;
+  top: 10px;
+}
+
+.slogan-content q::after {
+  content: "";
+}
 
 /* 푸터 */
+
+.footer-bg {
+  background: #988574;
+}
+
+.footer {
+  padding: 15px 100px 15px 200px;
+  position: relative;
+  height: 110px;
+}
+
+.address,
+.copyright {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.copyright {
+  margin-left: 40px;
+}
