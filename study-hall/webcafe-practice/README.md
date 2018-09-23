@@ -4,7 +4,9 @@
 
 ## 11기 프론트엔드 추석기간 과제 파일은 :
 
- [webcafe-practice.html](webcafe-practice.html)과 [style-webcafe.css](style-webcafe.css)입니다. 레이아웃만 해보았고 다른 신경써야 할 점들(접근성이라던지 코드의 간결함)은 고려하지 않았습니다... 나중에 시간이 될 때마다 업데이트 해보도록 하려고 하겠습니다!
+ [webcafe-practice.html](webcafe-practice.html)과 [style-webcafe.css](style-webcafe.css)입니다. 레이아웃만 해보았고 다른 신경써야 할 점들(접근성이라던지 코드의 간결함)은 고려하지 않았습니다...
+ 
+ 레이아웃은 최대한 아무 도움 받지 않고 제가 생각할 수 있는 방식으로 한 것이기에 너무나 부족합니다. 나중에 시간이 될 때마다 업데이트 해보도록 하려고 하겠습니다!
  
  **자료들의 출처는 김데레사님의 강의 파일들에서 가져와 사용하였습니다.** 
 
