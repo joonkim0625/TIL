@@ -12,6 +12,7 @@
 | --- | ---  | -------- | ----------  |
 | --- | ---  | -------- | ----------  |
 | --- | ---  | -------- | ----------  |
+| 37 | [10 - 25~26](JS/week07-10-25-18.md)  | JavaScript |  해커톤 오목만들기 | 
 | 36 | [10-21-18](JS/week07-10-21-18.md)  | JavaScript |  breakweek 자습 |
 | 35 | [10-20-18](JS/week07-10-20-18.md)  | JavaScript |  breakweek 자습 |
 | 34 | [10-19-18](JS/week07-10-19-18.md)  | JavaScript | 소프트웨어 특강 |
@@ -42,7 +43,7 @@
 | 08 | [09-13-18](HTML_CSS/week02-09-13-18.md) | HTML/CSS | Web Cafe 만들기 실습 - 애니메이션 |
 | 07 | [09-11-18](HTML_CSS/week02-09-11-18.md) | HTML/CSS | Web Cafe 만들기 실습 - 헤더 |
 | 06 | [09-10-18](HTML_CSS/week02-09-10-18.md) | HTML/CSS | Web Cafe 만들기 실습 - 헤더 |
-| 자습 | [09-08-18](study-hall/09-08-18.md) | 웹 카페 혼자 만들어보기 | 마크업 부터 시작하여 최대한 혼자 구성해 보기 |
+| 자습 | [09-08-18](study-hall/offdays-work/09-08-18.md) | 웹 카페 혼자 만들어보기 | 마크업 부터 시작하여 최대한 혼자 구성해 보기 |
 | 05 | [09-07-18](HTML_CSS/week01-09-07-18.md) | HTML/CSS  | HTML/CSS 프로젝트 사이트 실습 - 헤더|
 | 04 | [09-06-18](HTML_CSS/week01-09-06-18.md) | HTML/CSS  | 웹의 역사, 웹 기술 소개, HTML 문법과 구조 관련 요소 |
 | 03 | [09-05-18](Github_class/github_class.md) | GitHub 특강 | 깃헙 계정 생성 및 간단한 사용 방법 |
