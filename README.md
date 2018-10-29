@@ -11,10 +11,10 @@
 | --- | ---  | -------- | ----------  |
 | --- | ---  | -------- | ----------  |
 | --- | ---  | -------- | ----------  |
-| --- | ---  | -------- | ----------  |
-| 37 | [10 - 25~26](JS/week07-10-25-18.md)  | JavaScript |  해커톤 오목만들기 | 
-| 36 | [10-21-18](JS/week07-10-21-18.md)  | JavaScript |  breakweek 자습 |
-| 35 | [10-20-18](JS/week07-10-20-18.md)  | JavaScript |  breakweek 자습 |
+| 38 | [10-29-18](JS/week09-10-29-18.md)  | JavaScript |   |
+| 37 | [10 - 25~26](JS/week08-10-25-18.md)  | JavaScript |  해커톤 오목만들기 | 
+| 36 | [10-21-18](JS/week08-10-21-18.md)  | JavaScript |  breakweek 자습 |
+| 35 | [10-20-18](JS/week08-10-20-18.md)  | JavaScript |  breakweek 자습 |
 | 34 | [10-19-18](JS/week07-10-19-18.md)  | JavaScript | 소프트웨어 특강 |
 | 33 | [10-18-18](JS/week07-10-18-18.md)  | JavaScript | 소프트웨어 특강 |
 | 32 | [10-17-18](JS/week07-10-17-18.md)  | JavaScript | 실습 |
