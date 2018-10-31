@@ -10,8 +10,8 @@
 | --- | ---  | -------- | ----------  |
 | --- | ---  | -------- | ----------  |
 | --- | ---  | -------- | ----------  |
-| --- | ---  | -------- | ----------  |
-| 39 | [10-30-18](JS/week09-10-30-18.md)  | JavaScript |   |
+| 40 | [10-31-18](JS/week09-10-31-18.md)  | JavaScript | Class 및  |
+| 39 | [10-30-18](JS/week09-10-30-18.md)  | JavaScript |  HTML Form 및 Class |
 | 38 | [10-29-18](JS/week09-10-29-18.md)  | JavaScript |  node.js 및 iterable |
 | 37 | [10 - 25~26](JS/week08-10-25-18.md)  | JavaScript |  해커톤 오목만들기 | 
 | 36 | [10-21-18](JS/week08-10-21-18.md)  | JavaScript |  breakweek 자습 |
