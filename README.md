@@ -10,7 +10,8 @@
 | --- | ---  | -------- | ----------  |
 | --- | ---  | -------- | ----------  |
 | --- | ---  | -------- | ----------  |
-| 41 | [11-02-18](JS/week09-11-02-18.md)  | JavaScript | JWT  |
+| 42 | [11-05-18](JS/week10-11-05-18.md)  | JavaScript | Fetch API ~ GraphQL  |
+| 41 | [11-02-18](JS/week09-11-02-18.md)  | JavaScript | JWT 및 Axios 실습  |
 | 40 | [10-31-18](JS/week09-10-31-18.md)  | JavaScript | Class 및 CORS |
 | 39 | [10-30-18](JS/week09-10-30-18.md)  | JavaScript |  HTML Form 및 Class |
 | 38 | [10-29-18](JS/week09-10-29-18.md)  | JavaScript |  node.js 및 iterable |
