@@ -10,6 +10,7 @@
 | --- | ---  | -------- | ----------  |
 | --- | ---  | -------- | ----------  |
 | --- | ---  | -------- | ----------  |
+| 43 | [11-05-18](JS/week10-11-06-18.md)  | JavaScript | 할 일 목록 실습  |
 | 42 | [11-05-18](JS/week10-11-05-18.md)  | JavaScript | Fetch API ~ GraphQL  |
 | 41 | [11-02-18](JS/week09-11-02-18.md)  | JavaScript | JWT 및 Axios 실습  |
 | 40 | [10-31-18](JS/week09-10-31-18.md)  | JavaScript | Class 및 CORS |
