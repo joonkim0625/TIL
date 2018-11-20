@@ -10,7 +10,9 @@
 | --- | ---  | -------- | ----------  |
 | --- | ---  | -------- | ----------  |
 | --- | ---  | -------- | ----------  |
-| 48 | [11-13-18](JS/week11-11-14-18.md)  | JavaScript |  React  |
+| 50 | [11-20-18](JS/week12-11-20-18.md)  | JavaScript |  React  |
+| 49 | [11-19-18](JS/week12-11-19-18.md)  | JavaScript |  React  |
+| 48 | [11-14-18](JS/week11-11-14-18.md)  | JavaScript |  React  |
 | 47 | [11-13-18](JS/week11-11-13-18.md)  | JavaScript |  React  |
 | 46 | [11-12-18](JS/week11-11-12-18.md)  | JavaScript |  React  |
 | 45 | [11-08-18](JS/week10-11-08-18.md)  | JavaScript | 중간 프로젝트: 쇼핑몰 구현  |
