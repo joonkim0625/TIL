@@ -8,7 +8,9 @@
 | --- | ---  | -------- | ----------  |
 | --- | ---  | -------- | ----------  |
 | --- | ---  | -------- | ----------  |
-| 57 | [11-29-18](JS/week13-11-30-18.md)  | JavaScript |  React  |
+| 59 | [12-10-18](JS/week15-12-10-18.md)  | JavaScript |  React - Redux 특강  |
+| 58 | [12-06-18](JS/week14-12-06-18.md)  | JavaScript |  정규표현식 특강  |
+| 57 | [11-30-18](JS/week13-11-30-18.md)  | JavaScript |  React  |
 | 56 | [11-29-18](JS/week13-11-29-18.md)  | JavaScript |  React  |
 | 55 | [11-27-18](JS/week13-11-27-18.md)  | JavaScript |  React  |
 | 54 | [11-26-18](JS/week13-11-26-18.md)  | JavaScript |  React  |
