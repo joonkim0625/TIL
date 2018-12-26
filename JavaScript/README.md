@@ -8,5 +8,5 @@
 
 |     |    DATE    |      DESCRIPTION    |
 | --- |    ---     |      ----------     |
-| --- |    ---     |      ----------     |
+| 02 |    [2018-12-26](2018-12-26.md)     |      JavaScript, [React](./React/React_day_1)     |
 | 01 |    [2018-12-23](2018-12-23.md)     |      JavaScript: The Definitive Guide, 6th Edition     |
