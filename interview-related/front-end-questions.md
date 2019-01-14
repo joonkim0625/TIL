@@ -25,7 +25,7 @@ MVC 패턴에서 리액트의 어떤 컴포넌트들이 MVC 패턴과 맞는 역
 ### 서버 사이드 렌더링 vs 클라이언트 사이드 렌더링 
 [참고한 글 - https://www.elephate.com/blog/ultimate-guide-javascript-seo/](https://medium.com/@benjburkholder/javascript-seo-server-side-rendering-vs-client-side-rendering-bc06b8ca2383)
 
-내가 참고한 글은 JavaScript SEO와 관련된 글이다. 하지만 SSR과 CSR의 차이를 잘 설명해놓았기 때문에 읽어보았다.
+SSR과 CSR 뿐만 아니라 SEO와 관련된 이야기도 포함되어 있다. 
 
 #### JavaScript SEO는 무엇인가? 
 
