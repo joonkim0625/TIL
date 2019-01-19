@@ -193,4 +193,32 @@ Component가 constructor 함수를 가질 때:
 
 이 리듀서를 리듀서 폴더 안에 있는 index.js(combineReducers라는 함수가 정의 된 곳)에 import 해야 한다. 
 
+<!-- 1월 19일 챕터 40 -->
 
+리덕스와 직접적인 연결이 없다면 이것은 view(dumb) component이다. 
+
+인강의 예제에서 왜 book-list를 container로 만들지에 대한 과정을 알아보자.
+
+예제 내의 app.js가 모든 상태를 가지고 가장 최상위에 위치하지 않겠냐는 질문을 던질 수가 있는데, app.js는 사실 book list에 대해 신경을 쓰지 않는다고 볼 수 있다. book-list가 book list에 대해 신경을 쓰는 것이다. 그리고 active book에 관한 것도 book-detail이 신경을 쓰는 것이다. 
+
+app.js는 책의 리스트나 어떤 책이 선택되었는 지에 대한 것은 신경쓰지 않고,
+여러 다른 페이지를 렌더해달라는 것이 전부이다. 그렇기 때문에 BookList와 BookDetail이 redux와 직접 연결되는 smart container가 될 것이다. app.js는 dumb component의 역할을 하는 것이다. 
+
+그렇기 때문에 컨테이너(container component or smart component - 리덕스가 가진 상태에 직접적으로 접근할 수 있는 컴포넌트)를 생성할 때는 최상위 컴포넌트가 기능과 관련된 상태를 가지고 있어야(리덕스와 연결이 되어야 한다) 한다는 것이다. 자식 컴포넌트가 상태를 필요로 해도 그와 연결된 최상위 컴포넌트만 리덕스와 연결되어야 한다.  
+
+<!-- 챕터 42 -->
+
+그 후 `mapStateToProps(state)`라는 state을 매개변수로 받는 함수를 작성해 준다. 이 함수를 작성하는 이유는 이 애플리케이션의 상태(책의 리스트를 담은 배열, 현재 선택된 책)를 매개변수로 받는다. 이 함수에서 반환되는 값은 BookList 내에 props로 보여질 것이다.
+
+`import { connect } from 'react-redux'` 해준 후,
+`export default connect(mapStateToProps)(BookList)`와 같은 방식으로 export 시킨다. 
+
+connect는 함수와(mapStateToProps) 컴포넌트(BookList)를 받아서 컨테이너를 생성한다. 이 컨테이너는 리덕스에 의해 관리되고 있는 상태를 인식하는 컨테이너이다. 
+
+mapStateToProps 내에서 반환되는 것은 this.props로 접근할 수 있다. 이 함수는 리액트와 리덕스를 이어주는 아주 중요한 역할을 한다. 이 예제의 경우에서는 books라는 키를 가지고 state.books라는 값을 가진 것을 반환한다. state.books는 reducer에서 정의되는 books를 사용하기 위해 저렇게 쓰여졌다. 
+
+connect를 사용해서 컨테이너를 생성하면,
+1. 상태가 바뀌는 일이 발생한면 렌더가 다시 발생한다. 
+2. 상태가 바뀌는 일이 발생하면, mapStateToProps내에 선언된 객체는 컴포넌트에 props로 할당된다.
+
+<!-- 챕터 43부터 진행해야 함. -->
