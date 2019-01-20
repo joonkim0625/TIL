@@ -222,3 +222,98 @@ connect를 사용해서 컨테이너를 생성하면,
 2. 상태가 바뀌는 일이 발생하면, mapStateToProps내에 선언된 객체는 컴포넌트에 props로 할당된다.
 
 <!-- 챕터 43부터 진행해야 함. -->
+
+챕터 43은 위의 내용을 다시 복습하는 구간.
+
+리덕스는 상태(데이터를 저장하는 컨테이너)를 제공하고, 리액트는 뷰를 제공한다고 볼 수 있다. 앱의 상태는 리듀서 함수에 의해 생성된다. 여기서는 reducer_books.js를 생성하여 책에 관한 정보가 담긴 객체들이 있는 배열을 반환시켰다. 이 book 리듀서를 리듀서 폴대 안에 생성되어 있는 index.js(리듀서를 총괄하는 js 파일) 내의 combineReducer 내에 선언해준다. 이 리듀서 함수는 books라는 키를 가지고 BooksReducer(reducer_books.js로부터 오는)라는 값을 가진, 이 객체 안에 선언된 것을 이 애플리케이션의 전역 상태에 선언하게 된다. 
+
+그 이후에 books_list라는 컴포넌트를 생성한 뒤, 이 컴포넌트가 이 애플리케이션의 상태에 대해 인식해야한다는 것을 알고는 리덕스와 연결하기로 결정했다(컨테이너로 만들기로 결정함). 컨테이너(즉, 스마트 컴포넌트)로 만들기 위해서는 우선 connent를 임포트 하고, 그 뒤에 mapStateToProps 함수를 작성하고, export default connect를 이용해 리덕스와 연결한다. 
+
+book_list를 컨테이너로 만들기로 한 결정의 배경은 오직 이 컴포넌트만이 앱의 전역 상태에 있는 BookList에 대해 알아야하기 때문이다(app.js같은 경우에는 BookList를 알 필요가 없다).
+
+<!-- 챕터 44 액션과 액션 생성자 -->
+
+이 예제의 문제가 하나 있다. 그 문제는 book reducer는 항상 같은 배열만 반환한다는 것이다. 지금 이 상태는 100% static(정적)인 상황이다. 시간이 지나도 지금 상태로는 이 상태에 변화를 줄 수 없다. 나중에 선택된 책이 어떤 것인지를 표시하게 해주려면 결국 상태의 변화를 나타낼 수 밖에 없다. 그렇기 때문에 동적인 상태도 표현할 수 있도록 코드를 작성해야 한다. 이를 위해서 action과 action creator를 사용해서 구현한다. 
+
+**리덕스 action의 라이플 사이클**
+
+리덕스 내에서는 대부분의 모든 상황에서 사용자가 직접적 혹은 간접적으로 이벤트를 발생시켰을 때 action이 작동한다. 버튼을 클릭하거나, 드랍다운 메뉴를 펼치거나 하는 것이 직접적인 이벤트 발생의 예라면, 간접적으로는 Ajax통신이 완료된다던지, 페이지의 로드가 완료된다던지가 될 수 있다. 이러한 행동들은 action creator를 선택적으로 호출할 수가 있다.
+
+Action creator는 action을 반환하는 함수이다. 예를 들어, 사용자가 목록에서 책 하나를 클릭했을 때, action creator를 호출하게 되는 것이다. 그렇게 되면 action creator는 action을 반환하게 되는데, 이 action은 자동적으로 모든 리듀서들에게 전송이 된다. 리듀서들은 action의 종류에 따라 어떤 상태를 반환할 지 선택을 할 수가 있다. 만약에 여기서 상태를 반환하기로 한다면, 이 새로 반환된 상태는 애플리케이션의 상태에 넣어지게 되고, 이 상태의 추가 때문에 리액트가 다시 렌더링을 하게 된다. 
+
+Action은 객체 안에 타입을 포함하고 있다. 그리고 action을 설명할 수 있는 데이터도 포함할 수 있다. 
+
+리듀서에 action이 전송될 때, 그 안에서는 switch(action type) 선언문이 action이 어떤 타입을 가지고 있는지에 따라 실행된다.
+
+그리고 만약 선택된 타입에 무엇을 반환할지 정해져 있다면, 그것을 반환하게 될 것이다. default 설정은 현재의 상태를 그대로 반환한다. 
+
+그리고 이 스위치 문에서 반환되는 값이 애플리케이션의 새로운 상태 값으로 재할당이 된다.
+
+>all reducers processed the action and returned new state. New state has been assembled. notify containers of the changes to state. On noticification, containers will render with new props.
+
+
+<!-- 1월 20일 -->
+
+이제 책을 클릭했을 때, 선택된 책이 보이도록 구현하기 위해서 actions 폴더 내에 index.js에 이와 관련된 action을 작성할 것이다. 
+
+index.js 안에 selectBook이라는 book을 매개변수로 받는 함수를 작성하고 적용을 해야한다. 적용을 할 때, 이 함수를 book_list.js에 import하고 핸들러로 넘겨준다고 생각할 수도 있지만, 이 일은 그렇게 간단하지 않다. 
+
+선언된 action으로 인해 반환되는 것이 모든 리듀서들을 거치도록 구현을 해야한다. Action creator가 리덕스에 연결되도록 해주어야 한다는 것이다.
+
+book_list.js를 connect 훅을 사용해서 리덕스와 연결시켰던 것 처럼, 여기에다가 다시 bind를 통해 action creator와 연결해 줄 것이다. 
+
+book_list.js로 돌아온 뒤, selectBook을 import 해주고, 그 다음에 bindActionCreators라는 훅을 redux로부터 import 한다. 
+
+그리고 mapStateToProps 다음에는 mapDispatchToProps 함수를 작성하는데, 이 함수의 역할은 selectBook이 호출되었을 때 반환되는 값이 모든 리듀서들을 거치도록 하는 역할을 하도록 만들어주는 함수이다. 
+
+mapDispatchToProps를 통해 반환되는 것들은 BookList container에 props로 전달될 것이다.
+
+<!-- 챕터 46 -->
+
+mapDispatchToProps를 통해 selectBook이 반환될 것이기 때문에 이것`(this.props.selectBook)`을 위에 `<li>`에 onClick 이벤트를 통해 사용할 수가 있다. 
+
+index.js(actions 폴더 내의)로 돌아와서 selectBook에 타입을 정의해주려고 한다. return{} 내에 타입은 'BOOK_SELECTED'를 값으로 정해주고, payload는 book으로 정해줄 수 있다. 타입은 항상 대문자로, 그리고 대부분은 string을 사용하며 단어 별로 `_`를 사용하여 나누어줄 수 있다. 
+
+
+<!-- 챕터 47 -->
+
+이제 해야될 것은 active_book을 위한 리듀서를 작성하는 것이다.
+
+리듀서는 state과 action을 매개변수로 받는다. 매개변수에 들어오는 state는 전역의 state가 아닌, 하나의 리듀서가 관련하는 state만 취급한다. 
+
+만약에 작성된 리듀서와 관련없는 state이 들어오게 되면, 그냥 default state을 반환하도록 작성해줘야 한다. 
+
+선택된 책을 보여주는 리듀서를 작성 시, 사용자가 아무 선택을 하지 않았을 시에 넘겨줄 default state이 필요하다. 리듀서는 undefined를 상태로 넘겨주지 않고 에러를 발생시키기 때문에 default state을 항상 설정해주어야 한다!
+
+이 예제에서는, 매개변수 state에 null을 설정해준다. `state = null`(ES6에 추가된 기본값 설정법)을 해주면, state가 undefined가 반환되어도 이를 null로 반환해 줄 것이다. 
+
+리듀서 안에서 값을 변경하는 행위를 해서는 안된다. 항상 오염되지 않은 객체를 반환해야 한다. 
+
+리듀서 index.js에 ActiveBook을 import하고 combineReducers안에 선언해주자. 여기서, 키로 정의되는 객체가 바로 전역 상태의 키가 된다. 
+---
+
+**argument vs parameter**
+
+parameter(매개변수)는 함수에 어떠한 값이 넘어오는지를 뜻해주고 argument(인자)는 함수로 넘어오는 실제적인 값을 뜻한다!
+
+---
+
+<!-- 챕터 48 -->
+
+이제 선택된 책을 보여주는 book detail view를 만들 것인데, 이를 결정하기 위해서는 컴포넌트(VC)를 만들 것인지 컨테이너(CC)를 만들 것인지 결정해야 한다. 여기서는 우리가 어떤 책들이 있는지 알고, 언제 변경이 되는지 알기 때문에 이 컴포넌트는 리덕스에 연결될 수 있도록 컨테이너로 승격되어야 한다! 
+
+결국, 위의 뜻은 app.js는 책의 리스트와 책의 자세한 사항(어떤 책이 선택되었는지)을 뷰로 보여주기만 할 것이기 때문에, 어떤 책이 선택되었는지는 book detail만 알고 있으면 된다. 그렇기 때문에 우리는 active_book 컴포넌트를 컨테이너로 만들 것이다. 
+
+book-list를 리덕스와 연결했던 것 처럼 똑같이 하면 된다.
+
+<!-- 챕터 49 조건부 렌더링! -->
+
+리듀서가 실행될 때, 어떤 일이 일어나는 지를 알아보자. 
+
+애플리케이션이 처음 실행될 때:
+1. 액션이 들어온다. 타입이 뭔지는 모른다(이 예제에서는 앱이 켜졌을 때 책이 바로 선택되지 않기 때문에 어떠한 타입도 없다고 볼 수 있다).
+2. 그렇기 때문에 일단 `return state`문이 실행된다. 
+3. default값에 null을 넣어주었기 때문에 active book의 상태는 null값이 될 것이다. 
+4. 그렇기에 book-detail 내에 작성한 this.props.book.title도 없는 것(`null`이니까)으로 간주 될 것이다. 이것이 에러를 발생시킨다.  
+
+위의 상황을 방지하기 위해서, book-detail 내의 렌더 메소드에서 체크를 하는 코드를 작성해 줄 수 있다. 
