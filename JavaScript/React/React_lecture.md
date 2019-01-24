@@ -360,7 +360,8 @@ book-list를 리덕스와 연결했던 것 처럼 똑같이 하면 된다.
 
 ## 컴포넌트가 컨테이너가 될 것인지, 컴포넌트가 될 것인지를 정하자 
 
-1. SearchBar
+
+### SearchBar
   - 유저가 입력하는 도시의 정보를 요청해야하기 때문에 컨테이너가 되어야 한다. 
 
   - SearchBar 내에 사용되는 input은 controlled field(input에 입력되는 내용을 리액트(VC) 컴포넌트 상태에서 관리)화 시켜서 사용할 것이다. 
@@ -371,5 +372,83 @@ book-list를 리덕스와 연결했던 것 처럼 똑같이 하면 된다.
 
 
 
+<!-- 챕터 56, 미들웨어 -->
+
+## 미들웨어는 무엇인가?
+
+미들웨어는 액션을 받은 함수들이다. (기본적으로) 액션의 타입과 payload에 따라 미들웨어는 이것들을 통과시켜줄 수도 있고, 아니면 콘솔 로그를 찍어보거나 아예 작동을 멈추게 할 수도 있다. 리듀서에 액션이 닿기 전에 원하는 동작을 추가한 다음에 리듀서로 넘겨주는 것이라고 볼 수 있다. 
+
+결국 미들웨어는 액션이 리듀서로 가기 전에 검사를 하고, 액션들이 통과할 수가 있는지 아니면 추가되야 하는 작업이 있는지 등을 확인한다.
+
+미들웨어를 사용하기 위해, npm을 통해 redux-promise를 설치했다!
+
+<!-- 챕터 57, Axios로 Ajax 리퀘스트 -->
+
+이번 섹션에는 일단 리퀘스트를 보내는 것에 집중한다. 
+
+애플리케이션의 상태는 오직 리듀서와 액션들을 통해서 바꾸기 때문에, 날씨 정보를 불러오거나 애플리케이션의 상태를 바꾸기 위해서는(날씨 정보를 업데이트 하거나 추가하는 등의) 액션을 dispatch(액션 크리에이터를 부르기) 하고 Ajax 리퀘스트를 해야한다. 
+
+액션 크리에이터들은 항상 타입을 가지고 있는 액션이라는 객체를 반환해야 한다. 
+
+지난 번에는 type에 직접 문자열 값을 `'FETCH_WEATHER'` 이런 식으로 명해줬었는데, 이제는 `export const FETCH_WEATHER = 'FETCH_WEATHER'`과 같은 식으로 변수로 선언해주고 그것을 export하여 다른 곳에서도 사용될 수 있도록 해줄 것이다.
+
+그럼 왜 이런 것(전역에서 사용할 수 있도록 변수를 선언해주고 export하는)을 하는 것일까?
+  - 액션 크리에이터와 리듀서 사이에서 액션 타입을 항상 일정하게 해주려고 하기 위함이다.
+  - 혹시 누군가가 action에 오타를 내어서 잘못 값을 입력하게 되는 등의 일을 방지하기 위함이다.
+  - 그리고 나중에 그 변수의 값을 수정함에 있어서도 매우 간편하다. 문자열 값으로 type일 지정해 주었다면, 액션과 리듀서에서 모두 똑같게 수정을 해주어야 할 텐데, 변수로 정해놓고 사용하면 그 변수의 값만 설정을 바꿔주면 여전히 같은 변수명으로 사용되고 있을 것이니까 말이다. 
 
 
+payload는 전에도 설명했듯이, action과 관련된 정보를 포함할 수 있는데, 여기다가 axios request를 get한 정보를 같이 담으면 될 것이다.
+
+```js
+import axios from "axios";
+
+const API_KEY = "04e35625f77ea2b0f4bcd776054f8a9e";
+
+const ROOT_URL = `http://api.openweathermap.org/data/2.5/forecast?q=London,us&appid=${API_KEY}`;
+
+export const FETCH_WEATHER = "FETCH_WEATHER";
+
+export function fetchWeather(city) {
+  const url = `${ROOT_URL}&q=${city},us`;
+  const request = axios.get(url);
+
+  return {
+    type: FETCH_WEATHER,
+    payload: request
+  };
+}
+
+```
+
+<!-- 챕터 58 -->
+
+이제 SearchBar를 redux와 연결해서 사용자가 도시를 검색창에 입력했을 때 action을 보내주는 코드를 작성해야 한다. 
+
+그러기 위해서는 필요한 hook들을 import한 뒤에, 코드 마지막에 mapDispatchToProps 함수를 작성해야 한다. 
+
+```js
+
+function mpaDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchWeather }, dispatch);
+}
+
+// SearchBar를 export default하는 것을 지우고 이 밑에 선언한다.
+
+export default connect(
+  null,
+  mpaDispatchToProps
+)(SearchBar);
+
+// null을 선언해주는 이유는 mapDispatchToProps는 항상 2번째 argument로 넘겨져야 하기 때문이다. 
+```
+
+`onFormSubmit`을 bind 해주는 것을 잊으면 안된다!
+
+<!-- 챕터 59 -->
+
+reducer_weather.js 파일을 리듀서 폴더 내에 생성해주고, 이를 폴더 내의 index.js에 import 하자. 그 후, weather reducer를 combineReducers 내에 선언하자.
+
+axios는 promise를 반환하는데, action creator에서는 payload가 이 request에 대한 promise를 반환하는 곳이 된다.
+
+redux promise는 미들웨어로의 역할을 하면서 payload property를 확인해보면서, 이 payload에 promise가 들어오면 모든 action을 멈추고 (request가 끝나고 나면) promise를 분석한 결과를 리듀서로 변환하여 보내는 것이다. 
