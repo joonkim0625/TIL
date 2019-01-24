@@ -8,6 +8,7 @@
 
 |     |    DATE    |      DESCRIPTION    |
 |---|---|---|
+| 05 |    [2019-01-22](2019-01-14.md)     |      JavaScript   |
 | 04 |    [2019-01-14](2019-01-14.md)     |      JavaScript, [React](./React/React_lecture.md)   |
 | 03 |    [2018-12-27](2018-12-27.md)     |      JavaScript, [React](./React/React_lecture.md)   |
 | 02 |    [2018-12-26](2018-12-26.md)     |      JavaScript, [React](./React/React_lecture.md)     |
