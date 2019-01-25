@@ -547,3 +547,88 @@ function mapStateToProps({ weather }) {
 ```
 
 와 같이 작성할 수 있다!
+
+
+<!-- 챕터 62 -->
+## 챕터 62
+
+weather(도시들의 날씨 정보를 담고 있다)라는 배열을 mapping하여 화면에 표시해주어야 한다. 
+
+```js
+class WeatherList extends Component {
+  renderWeather(cityData) {
+    const name = cityData.city.name;
+    return (
+      <tr key={name}>
+        <td>{name}</td>
+      </tr>
+    );
+  }
+  render() {
+    return (
+      <table className="table table-hover">
+        <thead>
+          <tr>
+            <th>City</th>
+            <th>Temperature</th>
+            <th>Pressure</th>
+            <th>Humidity</th>
+          </tr>
+        </thead>
+        <tbody>{this.props.weather.map(this.renderWeather)}</tbody>
+      </table>
+    );
+  }
+}
+```
+
+위와 같이 이 인강에서는 renderWeather라는 함수를 만든 뒤, 그것을 `tbody` 안에 map 메소드를 사용하여 바로 함수를 넘겨주는 방식으로 표시하였다.
+
+
+<!-- 챕터 64 -->
+## 챕터 64
+
+스파크라인이라는 라이브러리를 통해 그래프를 표시하기.
+
+그래서 이 예제의 redux store 안에는... 
+
+```js
+weather: [
+ { city: {name: 'city a'},
+ list: [
+   { main: { temp: 260, humidity: 40, pressure: 55 },
+     main: { temp: 260, humidity: 40, pressure: 55 },
+     main: { temp: 260, humidity: 40, pressure: 55 },
+     main: { temp: 260, humidity: 40, pressure: 55 }
+
+   }
+ ] },
+ { city: {name: 'city b'},
+ list: [
+   { main: { temp: 260, humidity: 40, pressure: 55 },
+     main: { temp: 260, humidity: 40, pressure: 55 },
+     main: { temp: 260, humidity: 40, pressure: 55 },
+     main: { temp: 260, humidity: 40, pressure: 55 }}
+ ] }
+ 
+//  이것의 반복일 것
+]
+```
+
+weather.map을 통해 각각의 도시들 정보를 표시할 것이다. 그리고 저 한 도시에 포함되어 있는 여러 온도와 습도 그리고 기압을 한 배열에 묶어야 할 것이다. 예를 들면, `temperature: [260, 260, 260, 260]`의 식으로 말이다(map을 사용하면 된다).
+
+그래프는 Sparklines라는 라이브러리를 통해 작성하였다.
+
+<!-- 챕터 65 -->
+
+## 챕터 65
+
+이제 위 챕터에서는 온도와 관련된 그래프를 그려주었는데, 이 똑같은 코드를 습도와 기압에도 사용해줄 것이기 때문에 재사용 가능한 컴포넌트를 만들어서 코드 중복을 줄여보자.
+
+이 컴포넌트는 데이터를 props를 통해 받아올 것이기 때문에 리덕스와 연결할 필요가 없다. 그렇기에 컴포넌트로 작성하자(chart.js).
+
+chart.js는 아무 상태를 가질 필요가 없기 때문에, 함수형 컴포넌트로 작성해줄 수 있겠다.
+
+<!-- 챕터 66 -->
+
+## 챕터 66
