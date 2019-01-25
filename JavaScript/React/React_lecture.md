@@ -194,6 +194,7 @@ Component가 constructor 함수를 가질 때:
 이 리듀서를 리듀서 폴더 안에 있는 index.js(combineReducers라는 함수가 정의 된 곳)에 import 해야 한다. 
 
 <!-- 1월 19일 챕터 40 -->
+## 챕터 40
 
 리덕스와 직접적인 연결이 없다면 이것은 view(dumb) component이다. 
 
@@ -207,6 +208,7 @@ app.js는 책의 리스트나 어떤 책이 선택되었는 지에 대한 것은
 그렇기 때문에 컨테이너(container component or smart component - 리덕스가 가진 상태에 직접적으로 접근할 수 있는 컴포넌트)를 생성할 때는 최상위 컴포넌트가 기능과 관련된 상태를 가지고 있어야(리덕스와 연결이 되어야 한다) 한다는 것이다. 자식 컴포넌트가 상태를 필요로 해도 그와 연결된 최상위 컴포넌트만 리덕스와 연결되어야 한다.  
 
 <!-- 챕터 42 -->
+## 챕터 42
 
 그 후 `mapStateToProps(state)`라는 state을 매개변수로 받는 함수를 작성해 준다. 이 함수를 작성하는 이유는 이 애플리케이션의 상태(책의 리스트를 담은 배열, 현재 선택된 책)를 매개변수로 받는다. 이 함수에서 반환되는 값은 BookList 내에 props로 보여질 것이다.
 
@@ -222,6 +224,7 @@ connect를 사용해서 컨테이너를 생성하면,
 2. 상태가 바뀌는 일이 발생하면, mapStateToProps내에 선언된 객체는 컴포넌트에 props로 할당된다.
 
 <!-- 챕터 43부터 진행해야 함. -->
+## 챕터 43
 
 챕터 43은 위의 내용을 다시 복습하는 구간.
 
@@ -232,6 +235,7 @@ connect를 사용해서 컨테이너를 생성하면,
 book_list를 컨테이너로 만들기로 한 결정의 배경은 오직 이 컴포넌트만이 앱의 전역 상태에 있는 BookList에 대해 알아야하기 때문이다(app.js같은 경우에는 BookList를 알 필요가 없다).
 
 <!-- 챕터 44 액션과 액션 생성자 -->
+## 챕터 44
 
 이 예제의 문제가 하나 있다. 그 문제는 book reducer는 항상 같은 배열만 반환한다는 것이다. 지금 이 상태는 100% static(정적)인 상황이다. 시간이 지나도 지금 상태로는 이 상태에 변화를 줄 수 없다. 나중에 선택된 책이 어떤 것인지를 표시하게 해주려면 결국 상태의 변화를 나타낼 수 밖에 없다. 그렇기 때문에 동적인 상태도 표현할 수 있도록 코드를 작성해야 한다. 이를 위해서 action과 action creator를 사용해서 구현한다. 
 
@@ -253,6 +257,7 @@ Action은 객체 안에 타입을 포함하고 있다. 그리고 action을 설�
 
 
 <!-- 1월 20일 -->
+## 챕터 45
 
 이제 책을 클릭했을 때, 선택된 책이 보이도록 구현하기 위해서 actions 폴더 내에 index.js에 이와 관련된 action을 작성할 것이다. 
 
@@ -269,6 +274,8 @@ book_list.js로 돌아온 뒤, selectBook을 import 해주고, 그 다음에 bin
 mapDispatchToProps를 통해 반환되는 것들은 BookList container에 props로 전달될 것이다.
 
 <!-- 챕터 46 -->
+## 챕터 46
+
 
 mapDispatchToProps를 통해 selectBook이 반환될 것이기 때문에 이것`(this.props.selectBook)`을 위에 `<li>`에 onClick 이벤트를 통해 사용할 수가 있다. 
 
@@ -276,6 +283,7 @@ index.js(actions 폴더 내의)로 돌아와서 selectBook에 타입을 정의�
 
 
 <!-- 챕터 47 -->
+## 챕터 47
 
 이제 해야될 것은 active_book을 위한 리듀서를 작성하는 것이다.
 
@@ -299,6 +307,7 @@ parameter(매개변수)는 함수에 어떠한 값이 넘어오는지를 뜻해�
 ---
 
 <!-- 챕터 48 -->
+## 챕터 48
 
 이제 선택된 책을 보여주는 book detail view를 만들 것인데, 이를 결정하기 위해서는 컴포넌트(VC)를 만들 것인지 컨테이너(CC)를 만들 것인지 결정해야 한다. 여기서는 우리가 어떤 책들이 있는지 알고, 언제 변경이 되는지 알기 때문에 이 컴포넌트는 리덕스에 연결될 수 있도록 컨테이너로 승격되어야 한다! 
 
@@ -307,6 +316,7 @@ parameter(매개변수)는 함수에 어떠한 값이 넘어오는지를 뜻해�
 book-list를 리덕스와 연결했던 것 처럼 똑같이 하면 된다.
 
 <!-- 챕터 49 조건부 렌더링! -->
+## 챕터 49
 
 리듀서가 실행될 때, 어떤 일이 일어나는 지를 알아보자. 
 
@@ -319,6 +329,7 @@ book-list를 리덕스와 연결했던 것 처럼 똑같이 하면 된다.
 위의 상황을 방지하기 위해서, book-detail 내의 렌더 메소드에서 체크를 하는 코드를 작성해 줄 수 있다. 
 
 <!-- 챕터 50 -->
+## 챕터 50
 
 기억하고 넘어가야 할 것
 
@@ -332,6 +343,7 @@ book-list를 리덕스와 연결했던 것 처럼 똑같이 하면 된다.
 
 
 <!-- 리덕스 중급과정 : 미들웨어 챕터 51부터 -->
+## 챕터 51
 
 무엇을 어떻게 계획해서 만들 것인가?
 
@@ -343,6 +355,7 @@ book-list를 리덕스와 연결했던 것 처럼 똑같이 하면 된다.
 리덕스가 모든 데이터 통신과 관련된 로직을 가져야하고, 리액트는 뷰와 관련된 역할만 해야한다. 
 
 <!-- 챕터 52 -->
+## 챕터 52
 
 ## 컴포넌트 셋업 
 0. App 
@@ -373,6 +386,7 @@ book-list를 리덕스와 연결했던 것 처럼 똑같이 하면 된다.
 
 
 <!-- 챕터 56, 미들웨어 -->
+## 챕터 56
 
 ## 미들웨어는 무엇인가?
 
@@ -383,6 +397,8 @@ book-list를 리덕스와 연결했던 것 처럼 똑같이 하면 된다.
 미들웨어를 사용하기 위해, npm을 통해 redux-promise를 설치했다!
 
 <!-- 챕터 57, Axios로 Ajax 리퀘스트 -->
+
+## 챕터 57
 
 이번 섹션에는 일단 리퀘스트를 보내는 것에 집중한다. 
 
@@ -422,6 +438,7 @@ export function fetchWeather(city) {
 ```
 
 <!-- 챕터 58 -->
+## 챕터 58
 
 이제 SearchBar를 redux와 연결해서 사용자가 도시를 검색창에 입력했을 때 action을 보내주는 코드를 작성해야 한다. 
 
@@ -446,9 +463,87 @@ export default connect(
 `onFormSubmit`을 bind 해주는 것을 잊으면 안된다!
 
 <!-- 챕터 59 -->
+## 챕터 59
 
 reducer_weather.js 파일을 리듀서 폴더 내에 생성해주고, 이를 폴더 내의 index.js에 import 하자. 그 후, weather reducer를 combineReducers 내에 선언하자.
 
 axios는 promise를 반환하는데, action creator에서는 payload가 이 request에 대한 promise를 반환하는 곳이 된다.
 
 redux promise는 미들웨어로의 역할을 하면서 payload property를 확인해보면서, 이 payload에 promise가 들어오면 모든 action을 멈추고 (request가 끝나고 나면) promise를 분석한 결과를 리듀서로 변환하여 보내는 것이다. 
+
+<!-- 챕터 60 -->
+## 챕터 60
+
+이전 챕터에서 redux-promise가 알아서 promise를 분석해서 데이터를 넘겨주기 때문에, 우리는 이 데이터와 관련된 작업만 진행해주면 된다. 우리가 정작 필요한 데이터는 action.payload.data로 넘어오는 자료들이기에, 이 데이터만 저장하여 사용하면 된다.
+
+우리는 도시의 정보를 배열안에 넣는 것이 좋을 것이다. 그래서 reducer_weather.js의 초기 state 값을 null로 설정했던 것을 `[]`로 해주자. 
+
+```js
+import { FETCH_WEATHER } from "../actions/index";
+
+export default function(state = [], action) {
+  switch (action.type) {
+    case FETCH_WEATHER:
+      return [action.payload.data];
+  }
+  return state;
+}
+
+```
+
+위와 같이 코드 작성을 해주면, 이제 유저들이 새로운 검색을 시도할 때마다 그 특정한 도시에 정보만 배열 안에 넣게 만드는 구조임을 알 수 있다. 그렇기 때문에, 새로운 정보만 그 때 다시 넣는 것이 아니라 이미 검색된(저장된) 정보에다가 새로 검색되는 도시의 정보도 추가시키는 방식으로 코드 작성을 해주어야 한다. 
+
+배열에 새로운 정보를 추가하고 싶다고 해서, `state = 'something'`이나 기존값을 mutate(기존의 것에서 뻗어나오는 것이 아닌)해서 복사하면 안되고, setState을 이용하거나 완전히 새로운 것을 만들어야 한다. 
+
+이 경우에는 새로운 정보를 추가할 때마다 완전히 새로운 배열을(기존의 정보 + 새로 담길 정보) 생성해주는 것이 옳은 방법이다. `concat`을 이용해서 새로운 정보를 추가시킬 수 있다. `concat`은 기존에 있는 배열에 이어 붙이지 않고 매번 새로운 배열을 생성한다. 
+
+```js
+// 이렇게 새로운 배열을 생성하며 기존의 데이터에 새로운 데이터를 추가할 수 있다
+state.concat([action.payload.data]);
+
+// ES6 syntax를 이용하면...
+[ action.payload.data, ...state ]
+
+// 이와 같이 표현해 줄 수도 있다 -> 
+// 새로운 배열을 만들어서 action.payload.data를 추가하고 그 안에 이미 존재하고 있던 모든 데이터(...state)도 그대로 추가하라는 뜻의 분해대입이다
+
+```
+
+<!-- 챕터 61 -->
+## 챕터 61
+
+도시의 리스트를 불러서 보여줄 수 있는 컴포넌트를 만들 것이다. 이를 컴포넌트로 구성할 것인지, 컨테이너로 구성할 것인지를 생각해보자. 정보를 리덕스에서 받아와야하기 때문에, 이와 관련된 컴포넌트는 컨테이너가 되어야 한다. 
+
+`weather_list.js` 내에 필요한 마크업을 작성 한 뒤, 이를 리덕스와 연결시켜줘야 한다. 
+
+```js
+function mapStateToProps(state) {
+  return {
+    // 리듀서 index.js에 작성한 weather를 가져다 쓰기 때문에 state.weather
+    weather: state.weather
+  };
+}
+```
+
+위와 같이 작성한 것을 ES6 syntax를 사용하여 코드를 간결하게 할 수 있다.
+
+```js
+function mapStateToProps({ weather }) {
+  return {
+    weather: weather
+  };
+}
+
+```
+
+저기서 더 간결하게 하면,
+
+```js
+function mapStateToProps({ weather }) {
+  return {
+    weather // { weather } === { weather: weather}
+  };
+}
+```
+
+와 같이 작성할 수 있다!
