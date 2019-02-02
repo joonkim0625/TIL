@@ -8,7 +8,9 @@
 
 |     |    DATE    |      DESCRIPTION    |
 |---|---|---|
-| 10 |    2019-01-29    |       [React](./React/React_lecture.md), 챕터 127 ~   |
+| 12 |    2019-02-02    |       [React](./React/React_lecture.md), 챕터 140 ~ 끝 |
+| 11 |    2019-02-01    |       [React](./React/React_lecture.md), 챕터 133 ~ 139 |
+| 10 |    2019-01-29    |       [React](./React/React_lecture.md), 챕터 127 ~ 132  |
 | 09 |    2019-01-28    |       [React](./React/React_lecture.md), 챕터 120 ~ 126   |
 | 08 |    2019-01-26    |       [React](./React/React_lecture.md)   |
 | 07 |    2019-01-25    |       [React](./React/React_lecture.md)   |

@@ -910,7 +910,684 @@ componentDidMount() {
 
 글쓰기와 관련된 form 작성을 해줄 때에는 일반적인 방법에서 벗어나 redux-form을 사용해서 작성을 할 것이다. 
 
+<!-- 챕터 133, 2월 1일 -->
+
+## 챕터 133 
+
+### Redux Form
+
+리덕스 폼은 폼 내에 존재하는 상태들의 변화를 관리해주는데, 이 작업은 크게 이러한 순서로 진행된다:
+  1. 폼 안에 있는 각각의 다른 상태들을 감지한다.
+  2. 각각의 상태다마 필드 컴포넌트를 생성한다.
+  3. 사용자가 필드 내의 인풋 내용을 변경한다.
+  4. 리덕스 폼이 자동적으로 이 변화들에 대해 작업을 한다. 
+  5. 유저가 폼을 전송한다. 
+  6. 이 폼 내의 인풋들이 유효한지를 검사하고 폼을 전송한다.
+
+이 과정 사이에는 리덕스 폼이 폼을 컨트롤 한다고 보면 된다. 
+
+이 과정을 위해서 Field라는 훅과 reduxForm이라는 함수를 redux-form으로부터 import 하면 된다. Import 뒤에는 reduxForm과 PostsNew 컴포넌트를 연결해주어야 한다. 리덕스를 사용할 때의 connect를 import해서 사용하는 것과 똑같다고 보면 된다.
 
 
+```js
+export default reduxForm({
+  form: 'PostsNewForm'
+})(PostsNew);
+```
+
+reduxForm에 첫 인수로 들어오는 객체는, 한 종류의 폼이 아닌 여러 다른 종류의 폼을 적용시킬 수 있게 해준다. `form:` 다음에 올 value로는 특수한, 그 폼을 직접적으로 설명할 수 있는 이름이 오는 것이 제일 적절하다.
+
+redux form을 사용하여 폼 필드를 작성할 때는, 일반적인 form 태그를 사용해서 작성할 수 있겠다. 
+
+```js
+ <form>
+  <Field
+    name="title"    
+    component={this.renderTitleField} 
+    // Field가 함수를 실행시키길 것이기 때문에 ()와 같은 식으로 작성할 필요가 없다. 
+    // 이 컴포넌트 prop은 어떠한 종류의 input이 들어올 것인가를 결정한다. 
+  />
+</form>
+```
+
+우리가 만들 폼에는 타이틀, 카테고리, 콘텐츠라는 세 개의 다른 인풋들이 있을 것이기 때문에 3개의 Field 컴포넌트가 필요할 것이다. 
+
+그럼 저 component prop에 넘겨줄 input과 관련된 JSX를 작성하여 보자. 
+
+```js
+renderTitleField(field) {
+    return (
+      <div>
+        <input {...field.input} />
+      </div>
+    );
+  }
+  // {...field.input} 은 온갖 종류의 이벤트 핸들러를 한번에 불러오게 해준다. 
+```
+
+<!-- 챕터 135 -->
+
+## 챕터 135 
+
+```js
+renderTitleField(field) {
+    return (
+      <div className="form-group">
+        <label>Title</label>
+        <input className="form-control" type="text" {...field.input} />
+      </div>
+    );
+  }
+
+  renderTagsField(field) {
+    
+  }
+```
+
+위와 같이 코드 중복이 발생할 수 있는 여지가 많기 때문에 이를 줄일 수 있는 방법을 알아보자.
+
+```js
+// renderField로 이름을 바꾸고 재사용 가능하게 바꿔보자.
+
+renderField(field) {
+    return (
+      <div className="form-group">
+        <label>{field.label}</label>
+        <input className="form-control" type="text" {...field.input} />
+      </div>
+    );
+  }
+```
+
+위와 같이 작성한 뒤, `<Field>` 컴포넌트를 작성할 때,
+
+```js
+  <Field 
+  label="Title"
+  name="title" component={this.renderField}
+   />
+
+   <Field
+  label="Tags"
+  name="tags"
+  component={this.renderField}
+  />
+```
+
+<!-- 챕터 136 -->
+
+## 챕터 136
+
+이와 같이 label과 같은 props을 만들어 준 뒤 `renderField`내에서 `field.label`과 같이 사용할 수 있다.
+
+그리고 form을 전송할 때 그 form이 유효한지 안한지를 검사하기 위해서 validate이라는 함수를 만들어 준 뒤, reduxForm helper에 추가해 줄 것이다. 
+
+```js
+export default reduxForm({
+  validate,
+  form: "PostsNewForm"
+})(PostsNew);
+```
+
+validate 함수는 form의 라이프 사이클에 자동적으로 호출 될 것이다. 
+
+```js
+function validate(values) {
+  // 인수로 받는 values에는 => { title: 'adf', categories: 'dfadf', content: 'adf1'}와 같은 식으로 정보가 들어있을 것.
+  const errors = {};
+
+  
+
+  // validate the inputs from 'values'
+  if (!values.title) {
+    errors.title = "Enter a title!"
+  }
+
+  // 혹은 여러 조건을 걸어줄 수도 있다.
+
+  if (!values.title || values.title.length < 3) {
+    errors.title = "Enter a title that is at least 3 characters long"
+  }
+
+  if (!values.categories) {
+    errors.categories = "Enter some categories"
+  }
+
+  if (!values.content) {
+    errors.content = "Enter some content please"
+  }
+  // of errors is empty, the form is fine to sumbit 
+  // if errors has *any* properties, redux form assumes form is invalid 
+
+  return errors
+
+}
+```
+
+이 validate 함수는, `errors={}`가 비어있다면 아무 문제없이 지나가고, 만약 에러가 발생해서 errors 안에 무엇이 추가되어 있다면 그와 관련된 것을 return하게 해주는 함수이다. 여기에 작성된 `values.title`는 input 태그 내의 name 프로퍼티와 연걸되므로 그 둘의 이름은 같아야만 한다.  
+
+<!-- 챕터 137 -->
+
+## 챕터 137 
+
+이제 이 에러 메세지를 input 박스 밑에 출력하도록 설정하자. 
+
+```js
+
+ renderField(field) {
+    return (
+      <div className="form-group">
+        <label>{field.label}</label>
+        <input className="form-control" type="text" {...field.input} />
+        
+        {field.meta.error}
+      </div>
+      
+    );
+  }
+```
+
+`{field.meta.error}`를 input 밑에 작성하자. 이렇게 되면, redux form이 렌더될 때 validate 함수를 실행시키고 에러가 존재한다면, 이 에러 메세지를 `{field.meta.error}`내에 보여주게 될 것이다. 
+
+
+<!-- 챕터 138 -->
+
+## 챕터 138 
+
+reduxForm으로 PostsNew 컴포넌트를 연결해주었을 때, 이 reduxForm은 많은 properties를 추가해준다. 
+
+```js
+render() {
+    const { handleSubmit } = this.props
+    return (
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+        <Field
+
+      // ...
+```
+
+여기서 handleSubmit을 props로 받아올 수 있는 이유 중 하나도, 이 handleSubmit이 reduxForm에서 제공해주는 많은 property 중 하나이기 때문이다. 
+
+```js
+ <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+ ```
+
+이 handleSubmit은 리덕스 쪽에서 validation과 관련된 작업을 해주기 위한 것이라 볼 수 있고 그 유효성 검사가 끝나면 handleSubmit() 안에 있는(인수로 있는) 프론트엔드 쪽에서 작성하는 onSubmit 핸들러가 실행 될 것이다. 그리고 여기서 bind(this)가 가르키는 것은 이 컴포넌트라고 볼 수 있다. 
+
+<!-- 챕터 139 -->
+
+## 챕터 139
+
+이제 다시 validation에 관련된 작업을 진행하자. 
+
+지금 우리가 가진 validation의 문제는 사용자가 입력하기도 전에 에러메세지가 보인다는 것이다. 우리가 원하는 작동은 input에서 포커스가 없어졌을 때(유저가 다른 input으로 이동했을 때) 조건이 맞지 않는다면 그 에러메세지를 보여주기 원하는 것이다. 
+
+리덕스에서는 이와 관련한 작동을 위해 3가지의 단계를 거치게 된다. 
+
+이 3가지 단계는 pristine -> touched -> invalid 단계로 볼 수 있다.
+
+1. pristine
+  - 이 단계는 default 상태의 input(맨 처음 화면이 그려졌을 때) 상태이다. 
+  - 어떠한 input도 유저에 의해 건드려지지 않았거나 선택 자체도 된 적이 없는 상태를 뜻한다. 
+
+2. touched
+  - 이 단계는 유저가 선택 혹은 포커스를 한 뒤에 다른 input으로 이동을 한 경우이다. 
+  - 이 단계는 유저가 어떠한 작업을 한 뒤, 그 작업을 완료한 뒤 다른 필드로 넘어간 것으로 본다. 
+
+3. invalid
+  - 이것은 유효성 검사를 하는 단계로, 우리는 이 단계의 활성화가 유저들이 input에 어떠한 작업을 한 다음에 작동하기를 원한다. 
+
+3번의 작동을 위해서, 우리가 지금 단순히 `{field.meta.error}`라고 작성했던 코드를 삼항연산자를 통해 조건을 생성할 것이다. 
+
+```js
+// 만약 touched 되었다면 에러 메세지를 보여주고(에러가 있을 경우)
+// touched가 되지 않은 상황이라면 빈 문자열을 보여준다. 
+  {field.meta.touched ? field.meta.error : ""}
+```
+
+여기서 쓰이는 meta.touched도 리덕스 폼에서 제공하는 것으로, 유저가 input과 관련된 행동을 취하였는 지를 확인해준다. 
+
+<!-- 챕터 140 -->
+
+## 챕터 140 
+
+위에 작성했던 코드에 input에 아무것도 입력이 안되었을 시에 빨간 테두리와 빨간 에러 메세지를 보여주는 코드를 작성하고, 코드의 길이를 분해대입을 통해서 줄여보자.
+
+```js
+  renderField(field) {
+    const {
+      meta: { touched, error }
+    } = field;
+    const className = `form-group ${touched && error ? "has-danger" : ""}`;
+
+    return (
+      <div className={className}>
+        <label>{field.label}</label>
+        <input className="form-control" type="text" {...field.input} />
+        <div className="text-help">{touched ? error : ""}</div>
+      </div>
+    );
+  }
+```
+
+<!-- 챕터 141 -->
+
+## 챕터 141 
+
+캔슬 버튼을 링크 태그를 이용해서 적용시키자. 
+
+<!-- 챕터 142 -->
+
+## 챕터 142 
+
+이제 전송 버튼을 눌렀을 때, 서버로 보내고 싶은 정보를 담아서 보낼 수 있게 설정하자. 
+
+actions 폴더 내의 index.js로 이동해서:
+
+```js
+export const CREATE_POST = "create_post";
+
+// ...
+
+export function createPost(values) {
+  const request = axios.post(`${ROOT_URL}/posts${API_KEY}`, values);
+
+  return {
+    type: CREATE_POST,
+    payload: request
+  };
+}
+
+```
+
+이와 같이 작성을 해준다. 이 후에 리듀서 폴더 내로 이동해서 CREATE_POST라는 타입을 리듀서가 확인했을 때, 어떠한 작동을 하도록 할 것인가에 대한 정의를 해주어야 한다. 
+
+일단은 posts_new.js에도 액션 크리에이터를 연결해주어야 하는데, 일단 `{connet}`와 actions 폴더 내의 index.js에 정의했던 createPost를 import 해주고 난 뒤에:
+
+```js
+export default reduxForm({
+  validate,
+  form: "PostsNewForm"
+})(connect(null, { createPost })(PostsNew));
+```
+
+이와 같이 `(PostsNew)` 괄호가 쳐져있는 곳 안에다가 connect를 사용해서 연결해 줄 수 있다.
+
+그리고 난 뒤에 onSubmit 버튼 내의 코드는:
+
+```js
+ onSubmit(values) {
+    this.props.createPost(values);
+  }
+```
+
+로 작성해주자.
+
+<!-- 챕터 143 -->
+
+## 챕터 143 
+
+이제 포스트 작성이 완료된 후에는 포스트 리스트로 돌아가도록 설정을 해주자. 한 가지의 조건이 있는데, 오직 API 리퀘스트가 성공이 되었을 때만 유저를 포스트 리스트로 이동시켜주는 것이다. 
+
+리퀘스트가 성공한 뒤에 redirect를 시켜주어야 혹시나 모를 경우들(redirect되버리고 나서 post request가 성공한다던지)에 대해 대비할 수 있다. 
+
+```js
+ onSubmit(values) {
+    this.props.createPost(values, () => {
+      this.props.history.push("/");
+    });
+  }
+```
+
+위와 같은 구현을 위해서 values 다음에 callback으로 `this.props.history.push('/')`를 작성해주자. 그리고 actions 폴더 내의 index.js에 있는 createPost에도 밑과 같이 작성해주자.
+
+```js
+export function createPost(values, callback) {
+  const request = axios
+    .post(`${ROOT_URL}/posts${API_KEY}`, values)
+    .then(() => callback());
+
+  return {
+    type: CREATE_POST,
+    payload: request
+  };
+}
+```
+
+values 다음 인수로 callback을 추가해주고, request가 선언된 곳에 `.then`을 사용해서 post 리퀘스트가 성공했을 시에 callback 함수를 실행시키도록 구현해주자.
+
+<!-- 챕터 144 -->
+
+## 챕터 144 
+
+이제는 포스트의 디테일을 보여주는 컴포넌트를 작성할 것이다.
+
+PostsShow라는 컴포넌트를 만든 뒤, 이를 Route에 추가해야 한다. Route를 선언하는 순서가 중요하기 때문에 이미 작성된 Route들 사이에 이 컴포넌트를 선언하도록 하자. 
+
+```js
+ <Switch>
+  <Route path="/posts/new" component={PostsNew} />
+  <Route path="/posts/:id" component={PostsShow} />
+  <Route path="/" component={PostsIndex} />
+</Switch>
+```
+
+<!-- 챕터 145 -->
+
+## 챕터 145
+
+포스트를 불러와서 그것의 디테일을 보여주려면 두 가지의 상황을 생각해야 한다. 
+
+첫 번째는 사용자가 PostsIndex 페이지에 먼저 접속하여 포스트의 리스트를 보게 되는 것과 두 번째로는 PostsShow를 직접적으로 먼저 방문하는 경우를 따져야 한다. 
+
+여기서 강조되는 것은 사용자가 PostsShow를 URL로 직접 접속하였을 때, PostsShow의 역할은 다른 불필요한 정보를 불러오지 않고 그 유효한 포스트 하나만 불러와야 하는 역할을 가진다는 것이다. 유저가 항상 PostsIndex를 거친 뒤에 포스트를 직접 클릭할 것이라는 생각을 가지면 안된다.
+
+```js
+// actions 내의 index.js에 가서 하나의 포스트를 get해오는 함수를 작성하자.
+// 위에 FETCH_POST = "fetch_post"의 작성도 꼭!
+
+export function fetchPost(id) {
+  const request = axios.get(`${ROOT_URL}/posts/${id}${API_KEY}`);
+
+  return {
+    type: FETCH_POST,
+    payload: request
+  };
+}
+
+```
+
+위를 작성한 뒤에 reduers 폴더 내의 reducer_posts로 가서 case를 추가해주어야 한다.
+
+```js
+import _ from "lodash";
+
+// index.js(actions 폴더 내의)에서 import해오는 것이기에 자세한 파일명까지 적어줄 필요는 없다.
+import { FETCH_POSTS, FETCH_POST } from "../actions";
+
+export default function(state = {}, action) {
+  switch (action.type) {
+    // FETCH_POST CASE
+    // ES5 까지만 가능하다면 이렇게 풀어서 작성할 수 있음.
+    case FETCH_POST:
+      const post = action.payload.data;
+      const newState = { ...state };
+      newState[post.id] = post
+      return newState
+
+    case FETCH_POSTS:
+      return _.mapKeys(action.payload.data, "id");
+    default:
+      return state;
+  }
+}
+
+```
+
+우리는 이때까지 저장했던 정보를 보존시키고 싶기 때문에 새로운 객체를 생성하는 방식으로 코드를 작성한 것이다. 하지만 ES6 문법을 사용할 경우에는 아래와 같이 줄여서 작성할 수 있다.
+
+```js
+return { ...state, [action.payload.data.id]: action.payload.data };
+```
+
+여기서 `[action.payload.data.id]: action.payload.data`이 뜻하는 것은 배열을 만들라는 뜻이 아닌, `action.payload.data.id`이 value를 이용하여 새로운 key를 만들고 `...state`(기존에 존재하던 포스트 정보)에 추가하라는 것이다. 그리고 그것의 value를 `action.payload.data`로 설정해주라는 것이다. 
+
+<!-- 챕터 146 -->
+
+## 챕터 146
+
+이제 posts_show.js에 리덕스를 연결시켜야 한다. 
+
+```js
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchPost } from "../actions";
+
+class PostsShow extends Component {
+  render() {
+    return <div>Posts Show!</div>;
+  }
+}
+
+export default connect(
+  null,
+  { fetchPost }
+)(PostsShow);
+
+```
+
+일단은 이와 같이 연결을 시킨 뒤에, 언제 action creator를 호출시킬 것인지를 정해야 한다. componentDidMount 내에서 액션 크리에이터를 호출시키는 것이 옳다.
+
+그리고 특정한 id를 받아와서 이용해야 유저가 어떤 포스트를 선택했을 때, 그 포스트의 정보만 불러올 수 있기 때문에 `this.props.match.params.id`를 사용해서 id의 정보를 받아와야 한다. `match.params`는 `:id`와 같이 url내에 속한 와일드카드 토큰들의 정보를 받아올 수 있다.
+
+```js
+// 이렇게 작성할 수 있다
+class PostsShow extends Component {
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    this.props.fetchPost(id);
+  }
+```
+
+그 다음에 포스트를 렌더해주어야 하는데, 일단은 이렇게 생각해 볼 수도 있다. 포스트 리스트를 다 불러온 뒤에 그 중 유저가 선택한 특정한 포스트를 렌더하도록 말이다.
+
+```js
+ render() {
+    posts[this.props.match.params.id] // the post we want to show
+    return <div>Posts Show!</div>;
+  }
+}
+
+function mapStateToProps({ posts }) {
+  return { posts }
+}
+```
+
+하지만 이렇게 되면, 항상 포스트를 새로 그려줄 때마다 포스트 리스트를 불러와야 한다는 단점이 있다. 우리는 포스트 하나가 필요하기 때문에 다른 방식으로 작성하는 것이 효율성이나 비용면에서 훨씬 나은 동작을 할 것이다. 
+
+```js
+function mapStateToProps({ posts }, ownProps) {
+  
+}
+```
+
+위의 코드에서 첫 번째 인수로 들어가는 것은 항상 애플리케이션의 상태가 되어야하고, 두 번째로 들어올 인수로는 관례로 불리는 `ownProps`가 된다. 이 `ownProps`는 PostsShow 컴포넌트에 전 해지는 props를 뜻한다. 이 뜻은 `this.props === ownProps`나 마찬가지인 것이다.
+
+```js
+// 이와 같이 작성할 수 있다.
+function mapStateToProps({ posts }, ownProps) {
+  return { posts: posts[ownProps.match.params.id] };
+}
+```
+
+이렇게 해주는 이유는 무엇일까?
+  - 이런 식으로 코드를 작성하게 되면, 이 프로젝트에서 처럼 별개의 포스트를 보여주는 PostsShow 같은 컴포넌트는 데이터의 의존도(포스트 하나를 보여주는데도 항상 포스트의 리스트를 다 불러와야 하는)를 낮출 수 있고 재사용이 더욱 가능한 컴포넌트가 된다. 
+  - 그렇기 때문에 위와 같이 코드를 작성하는 이점이 있는 것이다. 
+
+
+<!-- 챕터 147 -->
+
+## 챕터 147 
+
+이제 개별의 포스트를 렌더해보자.
+
+```js
+ render() {
+    const { post } = this.props;
+    return (
+      <div>
+        <h3>{post.title}</h3>
+        <h6>Categories: {post.categories}</h6>
+        <p>{post.content}</p>
+      </div>
+    );
+  }
+```
+
+렌더 함수 내에 이 코드를 작성하고 실행을 하면...! 에러가 발생한다. title이 선언되지 않았다고! 그 이유는 무엇일까? 그 이유는 초기 렌더가 진행될 때, 우리는 componentDidMount가 실행된 뒤에 포스트의 정보를 받아오는데 초기 렌더 과정에서는 아직 아무 포스트의 정보가 들어있지 않기 때문이다.
+
+```js
+render() {
+    const { post } = this.props;
+
+    if (!post) {
+      return <div>Loading...</div>;
+    }
+
+    return (
+      <div>
+        <h3>{post.title}</h3>
+        <h6>Categories: {post.categories}</h6>
+        <p>{post.content}</p>
+      </div>
+    );
+  }
+```
+
+이와 같이 post에 아무것도 들어있지 않다면, loading이라는 텍스트를 보여주도록 코드를 작성할 수 있다. 
+
+<!-- 챕터 148 -->
+
+## 챕터 148
+
+유저가 포스트를 선택하면 그 특정 포스트로 이동할 수 있도록 작성하자. 
+
+```js
+renderPosts() {
+    return _.map(this.props.posts, post => {
+      return (
+        <li className="list-group-item" key={post.id}>
+          <Link to={`/posts/${post.id}`}>{post.title}</Link>
+        </li>
+      );
+    });
+  }
+```
+
+이것은 간단하게 post.title에 link 태그를 감싸주어서 경로를 설정해주자.
+
+이 다음에 발견된 문제는 index page가 로드될 때, 포스트의 모든 리스트를 한 번 리퀘스트하고 그 다음에 포스트 각각의 내용도 리퀘스트를 하는 불필요한 데이터 요청이 발생한다는 것이다. 작은 애플리케이션을 구상할 때에는 이것이 괜찮을 수 있지만, 네트워크의 사용량을 걱정해야하는 프로젝트라면 이와 같은 작업을 해줄 수 있다.
+
+```js
+// posts_show.js 내의 componentDidMount()에서 
+// 포스트가 존재하지 않는다면,
+// 포스트를 불러오자고 작성을 한다.
+
+ if (!this.props.post) {
+      const { id } = this.props.match.params;
+      this.props.fetchPost(id);
+    }
+```
+
+<!-- 챕터 149 -->
+
+## 챕터 149 
+
+유저가 선택한 포스트를 삭제할 수 있도록 하자.
+
+```js
+  onDeleteClick() {
+
+    // 이러한 식의 id 식별은 위험할 수 있는데,
+    // 백엔드에서 아직 post를 불러오지 않았을 수 있기 때문이다.
+    this.props.deletePost(this.props.post.id);
+  }
+```
+
+그렇기 때문에:
+
+```js
+
+onDeleteClick() {
+    // params를 이용한 접근은 항상 id의 정보를 가지고 있을 것이기에 
+    // 안전하다. 
+    const {id} = this.props.match.params
+    this.props.deletePost(id);
+  }
+
+```
+
+이 뒤에 버튼을 작성하고 이벤트 핸들러를 넘겨주자.
+
+```js
+ <button
+  className="btn btn-danger pull-xs-right"
+  onClick={this.onDeleteClick.bind(this)}
+>
+  Delete Post
+</button>
+```
+
+그리고 난 뒤에 액션 크리에이터에서 import 해오는 코드에 미리 작성을 하자: `import { fetchPost, deletePost } from "../actions";`
+
+그리고 export 시에도 연결해주어야 한다. 
+
+```js
+
+export default connect(
+  mapStateToProps,
+  { fetchPost, deletePost }
+)(PostsShow);
+```
+
+이렇게 먼저 설정을 한 뒤, 액션 크리에이터로 넘어가서 이와 관련된 delete 코드를 작성하자. 
+
+```js
+export function deletePost(id) {
+  const request = axios.delete(`${ROOT_URL}/posts/${id}${API_KEY}`);
+
+  return {
+    type: DELETE_POST,
+    // 다른 경우들처럼 리퀘스트를 반환받는게 아니라,
+    // 그냥 삭제할 시의 id만 리턴받는 것이 좀 더 명확해보인다.
+    // 리듀서에서는 페이로드에서 반환되는 id만 삭제하기 때문이다.
+    payload: id
+  };
+}
+```
+
+하지만 그냥 삭제만 하는 것이 아니라, 삭제가 성공적으로 되었다면 인덱스 화면으로 넘어가는 코드를 작성해주자.
+
+```js
+// posts_show 내에서 
+
+ onDeleteClick() {
+    const { id } = this.props.match.params;
+
+    this.props.deletePost(id, () => {
+      this.props.history.push("/");
+    });
+  }
+```
+
+그리고 나서,
+
+```js
+export function deletePost(id, callback) {
+  const request = axios
+    .delete(`${ROOT_URL}/posts/${id}${API_KEY}`)
+    .then(() => callback());
+
+// ...
+
+```
+
+이제 삭제를 한 뒤에 메모리에 남아있는 삭제된 포스트들을 정리해주고 새로운 포스트를 반환해주어야 한다.
+
+```js
+import _ from "lodash";
+
+// index.js(actions 폴더 내의)에서 import해오는 것이기에 자세한 파일명까지 적어줄 필요는 없다.
+import { FETCH_POSTS, FETCH_POST, DELETE_POST } from "../actions";
+
+export default function(state = {}, action) {
+  switch (action.type) {
+    case DELETE_POST:
+      return _.omit(state, action.payload);
+```
+
+lodash를 이용해서 state object가 삭제하는 key(id)를 가지고 있다면, 그 key(아이디)를 삭제한 뒤 새로운 리스트를 반환하도록 해주는 명령이다. 
+
+만약 객체가 아닌 배열로 구성된 목록이였다면, `return _.reject(state, post => post === action.payload)` 와 같이 작성했어야 할 것이다.
 
 
