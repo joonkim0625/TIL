@@ -1,5 +1,16 @@
 # TIL
-> 패스트 캠퍼스 프론트엔드 스쿨 과정에서의 TIL 입니다.
+
+## 자료구조 관련 TIL 입니다.
+
+[Data Structure](./dataStructureInJS/README.md)
+
+
+## 자바스크립트 및 관련 라이브러리들, 그리고 알고리즘 관련 TIL 입니다.
+
+[JavaScript and its related topics
+](./JavaScript/README.md)
+
+## 패스트 캠퍼스 프론트엔드 스쿨 과정에서의 TIL 입니다.
 
 ## Index
 
