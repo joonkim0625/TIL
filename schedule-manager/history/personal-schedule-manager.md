@@ -35,7 +35,7 @@
   <p style="color: white; backgrond-color: black;">inline style!</p>
 
 
-  // 하지만 JSS에서는,
+  // 하지만 CSS in JS에서는,
 
   import styled from 'styled-components';
 
@@ -58,8 +58,14 @@
   // 이렇게 작성이 될 것이다!
 
   <p class="hash136s21">Hello CSS-in-JS</p>
+
+  // CSS in JS는 DOM의 최상단에 <style> 태그를 붙이지만, 인라인 스타일은 단지 속성들을 DOM에 직접 붙이게 된다.
   ```
 
-  - 컴포넌트 내에 CSS를 작성하는 것이니 다른 CSS 스타일들과 혼동 될 일이 적을 것이라는 장점이 있다.
+  - 컴포넌트 내에 CSS를 작성하는 것이니 다른 CSS 스타일들과 혼동 될 일이 없고, 컴포넌트 내의 스타일만 생각할 수 있다는 장점이 있다.
+
+  - 또한 컴포넌트 내에 작성된 CSS 셀렉터들도 역시 컴포넌트 화 되어있기 때문에, 셀렉터끼리의 충돌을 방지할 수 있다.
 
 
+
+4. '어느 정도까지 컴포넌트들을 세분화해야 할까?'에 대한 고민은 끝이 없다.
