@@ -1,8 +1,12 @@
 # TIL
 
+## 궁금해서 시도해 본 것들
+
+
+
 ## 자료구조 관련 TIL 입니다.
 
-[Data Structure](./dataStructureInJS/README.md)
+[Data Structure](./dataStructureInJs/README.md)
 
 
 ## 자바스크립트 및 관련 라이브러리들, 그리고 알고리즘 관련 TIL 입니다.

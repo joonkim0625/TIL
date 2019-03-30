@@ -125,3 +125,9 @@ setB.add('a')
 
 console.log(setB.values())
 ```
+
+ES6에 추가된 Set에서도 비슷한 기능들을 사용해 볼 수 있다. 다른 점이 있다면, 어느 set에 관한 요소들을 보기 위해 `setD.values()`를 입력하면, 배열을 반환하는 대신 iterator를 반환한다. 
+
+그리고 ES6에 추가된 Set은 요소를 add할 때 true 또는 false를 반환하는 것이 아닌 set 자체를 반환한다.
+
+
