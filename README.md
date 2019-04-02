@@ -2,7 +2,7 @@
 
 ## 궁금해서 시도해 본 것들
 
-
+[Random things](./randomStuff/README.md)
 
 ## 자료구조 관련 TIL 입니다.
 
