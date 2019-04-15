@@ -4,7 +4,7 @@
 
 ## `typeof` 사용의 장점과 단점 - [도움 된 문서](http://tobyho.com/2011/01/28/checking-types-in-javascript/)
   
-`typeof`는 자바스크립트 값의 타입을 반환해준다. 하지만 `[]`의 `typeof`를 보면 `object`가 반환된다. 그렇다면... `null`의 타입을 체크해보았을 때에도 `object가 반환된다! `typoeof`는 날짜, 정규표현식, 사용자가 직접 정의한 객체들, DOM 요소들 그리고 대부분의 다른 것들을 `object`라고 반환할 것이다. 
+`typeof`는 자바스크립트 값의 타입을 반환해준다. 하지만 `[]`의 `typeof`를 보면 `object`가 반환된다. 그렇다면... `null`의 타입을 체크해보았을 때에도 `object`가 반환된다! `typoeof`는 날짜, 정규표현식, 사용자가 직접 정의한 객체들, DOM 요소들 그리고 대부분의 다른 것들을 `object`라고 반환할 것이다. 
 
 그렇기 때문에 `typeof` 연산자는 원시타입(primitive value) 값들을 비교할 때는 유용하나 객체들을 비교할 때는 무용지물이 된다(array와 null을 포함).
 
