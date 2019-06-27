@@ -1,5 +1,11 @@
 # TIL
 
+## Java
+
+## Python
+
+
+
 ## 궁금해서 시도해 본 것들
 
 [Random things](./randomStuff/README.md)
