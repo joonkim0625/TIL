@@ -150,8 +150,84 @@ course = "Python for Beginners"
 print(course[0:3])  # this prints Pyt. The last index number will not be printed.
 ```
 
+Doing this will print the whole value of its strings:
+
+```py
+course = "Python for Beginners"
+
+print(course[0:]) # this prints Python for Beginners
+print(course[1:]) # this prints ython for Beginners
+
+# if we don't provide the start index, then it will assume that the start index is zero.
+
+print(course[:5]) # this prints Pytho
+```
+
+So, if we run something like this, what will be the result? :
+
+```py
+name = "Jennifer"
+print(name[1:-1])
+```
+
+The start index `1` points to the letter `e`, and the index of `-1` will be the last letter of a string value which is `r`. But the last index is not included, so the program will print `ennife` which is from the index of `1` to the index of `-1`.
 
 
+### Formatted string
+
+This is just like using ' `` ' to use variables dynamically in JavaScript.
+
+```py
+first = "John"
+last = "Smith"
+
+message = first + " [" + last + "] is a coder"
+
+# in order to use the formatted string, 
+# you can prefix your strings with an F and then use curly braces to use the defined variables.
+# this allows you to insert values dynamically into the strings.
+
+msg = f"{first} [{last}] is a coder."
+
+print(msg)
+```
+
+There are built-in functions like `len` or `print` which are called `general purpose functions` that they do not belong to other kind of objects, numbers or strings.
+```py
+course = 'Python for Beginners'
+
+print(len(course)) # 20
+
+# if you want to covert all the letters to uppercase letters:
+
+print(course.upper()) # PYTHON FOR BEGINNERS
+
+```
+
+So, functions like `string.upper()` or `string.lower()` are called `methods`. `method` is a term in object oriented programming that we use when a function belongs to something else, or is specific to some kind of object.
+
+There is a `find` methond for strings.
+
+```py
+course = 'Python for Beginners'
+print(course.find('o')) # this returns 4
+
+```
+
+This `find` method is not only case sensitive, but it returns the index number of the characters that you are trying to find. Also:
+
+```py
+course = 'Python for Beginners'
+print(course.find('J')) # this returns -1 since there is no 'J' 
+print(course.find('Beginners')) # this returns 11 because the word 'beginners' starts with index 11
+```
+
+There is a `replace` method to replace a character or a sequence of characters.
+
+```py
+course = "Python for Beginners"
+
+print(course.replace("Beginners", "Absolute Beginners")) # Python for Absolute Beginners
 
 
-
+```
