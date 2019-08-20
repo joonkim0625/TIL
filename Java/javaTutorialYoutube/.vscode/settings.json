@@ -1,0 +1,12 @@
+// {
+//   "files.exclude": {
+//     "**/.git": true,
+//     "**/.classpath": true,
+//     "**/.project": true,
+//     "**/.settings": true,
+//     "**/.factorypath": true,
+//     "**/.DS_Store": true,
+//     "**/target/classes": true,
+//     "**/target/test-classes": true
+//   }
+// }
