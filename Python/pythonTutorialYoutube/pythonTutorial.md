@@ -338,5 +338,232 @@ For a better understanding, refer to the official documentation!!!
 `if` statements are very important in programming and they allow us to build programs that can make decisions based on some condition.
 
 
+**a practice problem**
+
+```py
+price_of_house = 1000000
+
+is_credit_good = False
+
+if is_credit_good:
+    down_payment = price_of_house * 0.1
+
+else:
+    down_payment = price_of_house * 0.2
+
+
+print(f"Down payment: {down_payment}")
+
+# my question: although you did not declare a variable before the if statement,
+# the variable that is assinged inside the if statement still exists and you can use it??
+# and you can re-assign values into a variable?
+# not like JavaScript where if you declare a variable with const, then you won't be able to re-assign a value?
+
+```
+
+---
+
+## Logical operators
+
+We use `logical operators` in situations where we have multiple conditions. This is not specific to Python programming language, pretty much to any programming language.
+
+```py
+has_high_income = True
+has_good_credit = True
+
+if has_high_income and has_good_credit:
+    print("Eligible for loan")
+
+# this pritns the string.
+# if one of the variables is 'False', it won't print anything.
+
+if has_high_income or has_good_credit:
+    print("Eligible for loan")
+
+# this will work as long as one of the variables' condition is True.
+
+```
+
+So, three situations are:
+  - AND: both
+  - OR: at least one
+  - NOT: inverses any boolean value 
+
+this is an example of `not` operator:
+
+```py
+has_good_credit = True
+has_criminal_record = False
+
+if has_good_credit and not has_criminal_record:
+    print("Eligible for loan")
+
+# since has_criminal_record is False, 'not has_criminal_record' becomes True.
+# therefore, the 'and' operator will print the string.
+
+```
+
+---
+
+## Comparison operators
+
+We use `comparison operators` in situations where we want to compare a variable with a value. For example, let's say there is a statement that says:
+
+```
+if temperature is greater than 30
+  it's a hot day
+otherwise if it's less than 10
+  it's a cold day
+otherwise
+  it's neither hot nor cold
+```
+
+```py
+
+temperature = 30
+
+if temperature >= 30:
+    print("it is a hot day")
+elif temperature <= 10:
+    print("it is a cold day")
+else:
+    print("it is neither")
+
+```
+
+Comparison operators:
+  - `>` or `>=`
+  - `==`
+  - `!=`
+
+**equality operator** 
+  `==` must be used to compare between values. `=` is the assignment operator. 
+
+
+An exercise on the video:
+
+```py
+
+name = "JAEJJEAJDFJASDF"
+
+if len(name) < 3:
+    print("name must be at least 3 characters")
+elif len(name) > 50:
+    print("name should be a maximum of 50 characters")
+else:
+    print("name looks good")
+
+```
+
+Another exercise - wrtie a program that an user types an input, and then the result varies depending on the unit that the user selects.
+
+my solution:
+
+```py
+weight = input("Weight: ")
+
+unit = input("(L)bs or (K)g: ")
+
+lower_cased_unit = unit.lower()
+
+if lower_cased_unit == "l":
+    print(f"your weight is {int(weight) * 0.45} kg.")
+elif lower_cased_unit == "k":
+    print(f"your weight is {int(weight) / 0.45} pounds.")
+else:
+    print("please select between L or K")
+    # will I able to go back to a certain point of code line if this is the case?
+
+```
+
+Mosh's solution:
+
+```py
+weight = int(input('Weight: '))
+unit = input('(L)bs or (K)g: ')
+
+if unit.upper() == "L":
+    converted = weight * 0.45
+    print(f"You are {converted} kilos")
+else:
+     converted = weight / 0.45
+    print(f"You are {converted} pounds")
+```
+
+---
+
+## while loops
+
+We can use while loops to execute a block of code multiple times. There are often useful in building interactive programs and games. 
+
+Here is an example:
+
+```py
+i = 1
+
+while i <= 5:
+    print(i)
+    i += 1
+
+print('done')
+# 1
+# 2
+# ...
+# 5 
+# done
+
+```
+
+The code is going to run until i becomes 6. Once i becomes 6, while loop will stop because i is greater than 5 which makes the statement false. The code gets out of the while loop and go to the next line which is printing 'done'.
+
+A quick exercise using while loop
+  - Build a program that lets user guess 3 times.
+  - If the answer is given in 3 attempts, it is going to say 'you win'
+  - If the answer is not given in 3 attempts, it is going to say 'try again'
+
+**my solution**
+
+```py
+answer = 9
+attempt = 1
+
+while attempt <= 3:
+
+    guess = int(input("Guess: "))
+
+    if guess == answer:
+        print("You are right!!!")
+        break
+    elif attempt == 3:
+        print("Try again!")
+
+    attempt += 1
+
+```
+
+**Mosh's solution**
+
+```py
+secret_number = 9
+guess_count = 0
+guess_limit = 3
+
+while guess_count < guess_limit:
+    guess = int(input("Guess: "))
+    guess_count += 1
+
+    if guess == secret_number:
+        print("You won!")
+        break
+
+else:
+    print("Sorry, you failed!")
+
+```
+
+After looking at the solution
+  - I did not know that while loop could have the else statement!!!
+  - It would have been better to have a variable such as guess_limit. Not just using a number.
+  - The location of incrementation should be located soon as the while loop starts. That makes more sense...
 
 
