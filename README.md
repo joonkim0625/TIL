@@ -4,7 +4,7 @@
 
 ## Python
 
-
+[Study Python](./Python/pythonTutorialYoutube/pythonTutorial.md)
 
 ## 궁금해서 시도해 본 것들
 
