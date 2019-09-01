@@ -311,7 +311,7 @@ print(abs(-2.9))  # 2.9
 
 ```
 
-If you want to write a program that involves complex mathematical calculations, you need to import the math module. A `module` in Python is a separate file with some reusable code. We use these moudles to organize our code into different files. 
+If you want to write a program that involves complex mathematical calculations, you need to import the math module. A `module` in Python is a separate file with some reusable code. We use these moudles to organize our code into different files.
 
 In order to use the math moudle, we need to import the module:
 
@@ -319,7 +319,7 @@ In order to use the math moudle, we need to import the module:
 import math  # all lower cases
 ```
 
-Now math is an object like a string, so we can access its functions or more accurately its methods using the dot operator. 
+Now math is an object like a string, so we can access its functions or more accurately its methods using the dot operator.
 
 ```py
 import math
@@ -336,7 +336,6 @@ For a better understanding, refer to the official documentation!!!
 ## if statments
 
 `if` statements are very important in programming and they allow us to build programs that can make decisions based on some condition.
-
 
 **a practice problem**
 
@@ -385,9 +384,10 @@ if has_high_income or has_good_credit:
 ```
 
 So, three situations are:
-  - AND: both
-  - OR: at least one
-  - NOT: inverses any boolean value 
+
+- AND: both
+- OR: at least one
+- NOT: inverses any boolean value
 
 this is an example of `not` operator:
 
@@ -432,13 +432,13 @@ else:
 ```
 
 Comparison operators:
-  - `>` or `>=`
-  - `==`
-  - `!=`
 
-**equality operator** 
-  `==` must be used to compare between values. `=` is the assignment operator. 
+- `>` or `>=`
+- `==`
+- `!=`
 
+**equality operator**
+`==` must be used to compare between values. `=` is the assignment operator.
 
 An exercise on the video:
 
@@ -494,7 +494,7 @@ else:
 
 ## while loops
 
-We can use while loops to execute a block of code multiple times. There are often useful in building interactive programs and games. 
+We can use while loops to execute a block of code multiple times. There are often useful in building interactive programs and games.
 
 Here is an example:
 
@@ -509,7 +509,7 @@ print('done')
 # 1
 # 2
 # ...
-# 5 
+# 5
 # done
 
 ```
@@ -517,9 +517,10 @@ print('done')
 The code is going to run until i becomes 6. Once i becomes 6, while loop will stop because i is greater than 5 which makes the statement false. The code gets out of the while loop and go to the next line which is printing 'done'.
 
 A quick exercise using while loop
-  - Build a program that lets user guess 3 times.
-  - If the answer is given in 3 attempts, it is going to say 'you win'
-  - If the answer is not given in 3 attempts, it is going to say 'try again'
+
+- Build a program that lets user guess 3 times.
+- If the answer is given in 3 attempts, it is going to say 'you win'
+- If the answer is not given in 3 attempts, it is going to say 'try again'
 
 **my solution**
 
@@ -562,8 +563,15 @@ else:
 ```
 
 After looking at the solution
-  - I did not know that while loop could have the else statement!!!
-  - It would have been better to have a variable such as guess_limit. Not just using a number.
-  - The location of incrementation should be located soon as the while loop starts. That makes more sense...
 
+- I did not know that while loop could have the else statement!!!
+- It would have been better to have a variable such as guess_limit. Not just using a number.
+- The location of incrementation should be located soon as the while loop starts. That makes more sense...
 
+---
+
+Another quick exercise
+
+```py
+
+```
