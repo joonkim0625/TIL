@@ -570,7 +570,9 @@ After looking at the solution
 
 ---
 
-Another quick exercise
+Another quick exercise:
+
+- If user types 'help', it will show the commands that the user can use.
 
 ```py
 
