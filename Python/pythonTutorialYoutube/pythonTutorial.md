@@ -573,7 +573,166 @@ After looking at the solution
 Another quick exercise:
 
 - If user types 'help', it will show the commands that the user can use.
+- and the commands will show their own functions as user type their names.
 
 ```py
+command = ""
+
+while command != "quit":
+    command = input("> ").lower()
+
+    if command == "start":
+        print("Car Started...")
+        command = ""
+
+    elif command == "stop":
+        print("Car stopped.")
+        command = ""
+
+    elif command == "help":
+        print(
+            """
+        start - to start the car
+
+        """
+        )
+        command = ""
+
+    elif command == "quit":
+        break
+
+    else:
+        print("I don't understand.")
+        command = ""
+
 
 ```
+
+**Mosh's solution**
+
+```py
+command = ""
+
+while True:
+    command = input("> ").lower()
+
+    if command == "start":
+        print("Car Started...")
+
+    elif command == "stop":
+        print("Car stopped.")
+
+    elif command == "help":
+        print(
+            """
+start - to start the car
+stop - to stop the car
+quit - to quit
+
+        """
+        )
+
+    elif command == "quit":
+        break
+
+    else:
+        print("Sorry, I don't understand.")
+
+
+```
+
+If you use `while True: ...`, you can have a block of code run until you tell the code to break.
+
+More to the excercise: if the car is already running while user inputs 'start', make it say 'the car is already running'.
+
+```py
+command = ""
+status = "stopped"
+
+while True:
+    command = input("> ").lower()
+
+    if command == "start":
+
+        if status == "started":
+            print("it is running")
+        elif status == "stopped":
+
+            status = "started"
+            print("Car Started...")
+
+    elif command == "stop":
+
+        if status == "stopped":
+            print("it isn't running")
+
+        elif status == "started":
+            print("Car stopped.")
+
+    elif command == "help":
+        print(
+            """
+start - to start the car
+stop - to stop the car
+quit - to quit
+
+        """
+        )
+
+    elif command == "quit":
+        break
+
+    else:
+        print("Sorry, I don't understand.")
+
+
+```
+
+**Mosh's solution**
+
+```py
+command = ""
+started = False
+
+while True:
+    command = input("> ").lower()
+
+    if command == "start":
+
+        if started:
+            print("Car is already started")
+        else:
+            started = True
+            print("Car Started...")
+
+    elif command == "stop":
+
+        if not started:
+            print("Car is already stopped")
+        else:
+            started = False
+            print("Car stopped.")
+
+    elif command == "help":
+        print(
+            """
+start - to start the car
+stop - to stop the car
+quit - to quit
+
+        """
+        )
+
+    elif command == "quit":
+        break
+
+    else:
+        print("Sorry, I don't understand.")
+
+
+```
+
+What I learned:
+
+- how to come up with better variable names and their values.
+- need to think more simplely.
