@@ -738,3 +738,97 @@ What I learned:
 - need to think more simplely.
 
 ---
+
+**Write a program that adds up all the prices in a list**
+
+```py
+prices = [10, 20, 30]
+
+total = 0
+
+for item in prices:
+    total += item
+
+print(total)
+
+```
+
+**Mosh's solution**
+
+```py
+prices = [10, 20, 30]
+
+total = 0
+
+for price in prices:
+    total += item
+
+print(f"Total: {total}")
+```
+
+- I need to come up with better variable names or naming in general. Even in the for loop, I could have used a better name than 'item'. Also, when I try to print something, it should try to make it like an actual print statement, not just priting a result of something...
+
+---
+
+### Nested loops
+
+Nested loop is basically adding one loop inside of another loop.
+
+Example:
+
+```py
+for x in range(5):
+
+    for y in range(5):
+        print(f"({x}, {y})")
+
+# code like above will print something like below
+# (0, 0)
+# (0, 1)
+# (0, 2)
+# (0, 3)
+# (0, 4)
+# (1, 0)
+# (1, 1)
+# (1, 2)
+# (1, 3)
+# (1, 4) ...
+
+```
+
+**challenge**
+
+Using nested loop to print a letter like below:
+
+```
+xxxxx
+xx
+xxxxx
+xx
+xx
+```
+
+**solution**
+
+```py
+numbers = [5, 2, 5, 2, 2]
+
+for x_count in numbers:
+
+    # this resets the output as the first noop runs again
+    output = ""
+
+    for count in range(x_count):
+        output += "x"
+
+    print(output)
+
+```
+
+- leanred how to better use the nested loop...
+- from the example above, you could use `x_count` to set the range.
+- nice!!
+
+---
+
+### Lists
