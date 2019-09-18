@@ -832,3 +832,57 @@ for x_count in numbers:
 ---
 
 ### Lists
+
+```py
+names = ['John', 'Bob', 'Mose', 'Sarah', 'Maria']
+
+print(names[0])     # prints John
+print(names[-1])    # prints Maria
+print(names[-2])    # prints Sarah
+print(names[2:])    # ['Mose', 'Sarah', 'Maria']
+                    # [2:] => starting from the index of '2'
+print(names[2:4])   # pritns ['Mose', 'Sarah']
+                    # pritns from index[2] to index[3]. Does not include the last number which is [4]
+
+# if you want to overwrite an item that is in the list:
+
+names[0] = 'Hello'
+
+print(names)    # ['Hello', 'Bob', 'Mose', 'Sarah', 'Maria']
+
+```
+
+---
+
+\*\* Exercise:
+find a largest number in a list
+
+**my attempt**
+
+```py
+def largest_num(number_list):
+
+    stored_num = number_list[0]
+
+    for number in number_list:
+
+        if stored_num < number:
+
+            stored_num = number
+
+    return stored_num
+```
+
+**Mosh's**
+
+```py
+# numbers = [ some numbers ...]
+
+max = numbers[0]
+
+for number in numbers:
+    if number > max:
+        max = number
+
+print(max)
+```
