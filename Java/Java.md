@@ -6,7 +6,7 @@ Going through a youtube video by Mosh Hamedani. The reference is from [here](htt
 
 ## Function
 
-Functin is the smallest building block in Java programs. You can think of function as a block of code that performs a task.
+Function is the smallest building block in Java programs. You can think of function as a block of code that performs a task.
 
 If you want to code a function in Java, you could do something like this:
 
@@ -44,7 +44,7 @@ class Main {
 
   // functions that are defined inside this class 'Main' belongs to this class 'Main'!!!
   // we refer to these functions as methods.
-  
+
   void main() {
     // ...
   }
@@ -60,13 +60,13 @@ In Java, all these classes and methods should have an `access modifier`. An `acc
 
 // A main class
 public class Main {
-  
+
   // A main method
   public void main() {
-    // ... 
+    // ...
   }
 
 }
 ```
 
-In Java, we use different conventions for naming our classes and our methods. To name our classes, we use `the Pascal naming convention` and that basically means the first letter of every word should be uppercase. In contrast to name our methods, we use the 'camel naming convention` and that means the first letter of every word should be uppercase except the first word. 
+In Java, we use different conventions for naming our classes and our methods. To name our classes, we use `the Pascal naming convention` and that basically means the first letter of every word should be uppercase. In contrast to name our methods, we use the 'camel naming convention` and that means the first letter of every word should be uppercase except the first word.
