@@ -6,5 +6,6 @@ All the contents are from [coursera.org](https://www.coursera.org) and its one o
 
 ## week 1
 
-    [Dynamic connectivity](./week1/quick_find.md)
+1.[Dynamic connectivity](./week1/quick_find.md)
+
 
