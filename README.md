@@ -1,16 +1,10 @@
 # TIL
 
-## Java
+## random things 
 
-## Python
+[random things](./randomStuff/README.md)
 
-[Study Python](./Python/pythonTutorialYoutube/pythonTutorial.md)
-
-## 궁금해서 시도해 본 것들
-
-[Random things](./randomStuff/README.md)
-
-## 자료구조 관련 TIL 입니다.
+## data structure related materials... 
 
 [Data Structure](./dataStructureInJs/README.md)
 
