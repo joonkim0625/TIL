@@ -1,22 +1,22 @@
 # TIL
 
-## random things 
+Notes on what I have learned 
 
-[random things](./randomStuff/README.md)
+## Data structure from Coursera 
 
-## data structure related materials... 
+All the credits --> [Coursera - Algorithms, Part 1](https://www.coursera.org/learn/algorithms-part1)
+[Data Structure](./algorithms/README.md)
 
-[Data Structure](./dataStructureInJs/README.md)
 
+## Javascript  
 
-## 자바스크립트 및 관련 라이브러리들, 그리고 알고리즘 관련 TIL 입니다.
+[JavaScript and its related topics](./JavaScript/README.md)
 
-[JavaScript and its related topics
-](./JavaScript/README.md)
+## Notes from the frontend development bootcamp 
 
-## 패스트 캠퍼스 프론트엔드 스쿨 과정에서의 TIL 입니다.
+Notes are written in Korea.
 
-## Index
+### Index
 
 |  | DATE | CATEGORY | DESCRIPTION |
 | --- | ---  | -------- | ----------  |
