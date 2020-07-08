@@ -5,7 +5,8 @@ Notes on what I have learned
 ## Data structure from Coursera 
 
 All the credits --> [Coursera - Algorithms, Part 1](https://www.coursera.org/learn/algorithms-part1)
-[Data Structure](./algorithms/README.md)
+
+[Data Structure In Java](./algorithms/README.md)
 
 
 ## Javascript  
